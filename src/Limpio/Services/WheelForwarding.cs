@@ -2,13 +2,15 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using Limpio.Core;
 
 namespace Limpio.Services;
 
 /// <summary>
 /// A ScrollViewer marks the mouse wheel as handled even when it has nothing to scroll (or is already at its end),
 /// so the wheel and the touchpad two-finger scroll stop working over lists nested in a scrolling page.
-/// This class handler hands the wheel to the nearest parent ScrollViewer in those cases. Registered once at startup.
+/// This class handler scrolls the nearest ancestor ScrollViewer that can still move in those cases.
+/// Registered once at startup.
 /// </summary>
 public static class WheelForwarding
 {
@@ -19,32 +21,29 @@ public static class WheelForwarding
     private static void OnPreviewMouseWheel(object sender, MouseWheelEventArgs e)
     {
         if (e.Handled || sender is not ScrollViewer sv) return;
-        if (CanScroll(sv, e.Delta)) return;
-        var parent = FindParentScrollViewer(sv);
-        if (parent is null) return;
+        if (CanScroll(sv, e.Delta)) return; // inner viewer still scrolls: leave it alone
+        if (InOpenDropDown(sv)) return;
 
-        e.Handled = true;
-        parent.RaiseEvent(new MouseWheelEventArgs(e.MouseDevice, e.Timestamp, e.Delta)
+        for (var parent = ParentOf(sv); parent is not null; parent = ParentOf(parent))
         {
-            RoutedEvent = UIElement.PreviewMouseWheelEvent,
-            Source = sv,
-        });
-    }
-
-    private static bool CanScroll(ScrollViewer sv, int delta)
-    {
-        if (sv.ScrollableHeight <= 0) return false;
-        return delta > 0 ? sv.VerticalOffset > 0 : sv.VerticalOffset < sv.ScrollableHeight;
-    }
-
-    private static ScrollViewer? FindParentScrollViewer(DependencyObject start)
-    {
-        var d = VisualTreeHelper.GetParent(start);
-        while (d is not null)
-        {
-            if (d is ScrollViewer s) return s;
-            d = d is Visual or System.Windows.Media.Media3D.Visual3D ? VisualTreeHelper.GetParent(d) : LogicalTreeHelper.GetParent(d);
+            if (parent is not ScrollViewer target || !CanScroll(target, e.Delta)) continue;
+            target.ScrollToVerticalOffset(ScrollLogic.NextOffset(target.VerticalOffset, target.ScrollableHeight, e.Delta));
+            e.Handled = true; // something actually scrolled
+            return;
         }
-        return null;
     }
+
+    private static bool CanScroll(ScrollViewer sv, int delta) =>
+        ScrollLogic.CanScrollVertically(sv.VerticalScrollBarVisibility == ScrollBarVisibility.Disabled,
+            sv.ScrollableHeight, sv.VerticalOffset, delta);
+
+    private static bool InOpenDropDown(DependencyObject start)
+    {
+        for (var d = ParentOf(start); d is not null; d = ParentOf(d))
+            if (d is ComboBox { IsDropDownOpen: true }) return true;
+        return false;
+    }
+
+    private static DependencyObject? ParentOf(DependencyObject d) =>
+        d is Visual or System.Windows.Media.Media3D.Visual3D ? VisualTreeHelper.GetParent(d) : LogicalTreeHelper.GetParent(d);
 }

@@ -283,3 +283,47 @@ public sealed class RunLogTests : IDisposable
         public void Report(ApplyEvent value) => log.Event(value);
     }
 }
+
+public class ScrollLogicTests
+{
+    [Theory]
+    [InlineData(false, 100, 50, 120, true)]   // can go up
+    [InlineData(false, 100, 0, 120, false)]   // at top, wheel up
+    [InlineData(false, 100, 0, -120, true)]   // at top, wheel down
+    [InlineData(false, 100, 100, -120, false)] // at bottom, wheel down
+    [InlineData(false, 0, 0, -120, false)]    // nothing to scroll
+    [InlineData(true, 100, 50, -120, false)]  // vertical scrollbar disabled
+    [InlineData(false, 100, 50, 0, false)]
+    public void Can_scroll_decision(bool disabled, double height, double offset, int delta, bool expected) =>
+        Assert.Equal(expected, ScrollLogic.CanScrollVertically(disabled, height, offset, delta));
+
+    [Theory]
+    [InlineData(50, 100, -120, 100)]
+    [InlineData(50, 100, 30, 20)]
+    [InlineData(10, 100, 120, 0)]
+    public void Next_offset_is_clamped(double offset, double height, int delta, double expected) =>
+        Assert.Equal(expected, ScrollLogic.NextOffset(offset, height, delta));
+}
+
+public sealed class BackupNameTests : IDisposable
+{
+    private readonly string _dir = Path.Combine(Path.GetTempPath(), "limpio-bk-" + Guid.NewGuid().ToString("N"));
+
+    public void Dispose()
+    {
+        if (Directory.Exists(_dir)) Directory.Delete(_dir, true);
+    }
+
+    [Fact]
+    public async Task Two_backups_in_the_same_second_do_not_overwrite_each_other()
+    {
+        var store = new Limpio.Core.Backup.BackupStore(_dir);
+        var at = new DateTime(2026, 11, 19, 10, 22, 29, DateTimeKind.Utc);
+        var a = new Limpio.Core.Backup.BackupFile { CreatedUtc = at };
+        var b = new Limpio.Core.Backup.BackupFile { CreatedUtc = at };
+        var pa = await store.SaveAsync(a);
+        var pb = await store.SaveAsync(b);
+        Assert.NotEqual(pa, pb);
+        Assert.Equal(2, (await store.ListAsync()).Count);
+    }
+}

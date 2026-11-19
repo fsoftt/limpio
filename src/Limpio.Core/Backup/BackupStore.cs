@@ -36,9 +36,18 @@ public sealed class BackupStore : IBackupStore
     public async Task<string> SaveAsync(BackupFile backup)
     {
         Directory.CreateDirectory(_folder);
-        var path = Path.Combine(_folder, backup.CreatedUtc.ToLocalTime().ToString("yyyyMMdd-HHmmss") + ".json");
+        var path = UniquePath(_folder, backup.CreatedUtc.ToLocalTime().ToString("yyyyMMdd-HHmmss"));
         await File.WriteAllTextAsync(path, Serialize(backup));
         backup.FilePath = path;
+        return path;
+    }
+
+    /// <summary>Folder + stamp + ".json", with a -2, -3... suffix when that file already exists.</summary>
+    public static string UniquePath(string folder, string stamp)
+    {
+        var path = Path.Combine(folder, stamp + ".json");
+        for (var i = 2; File.Exists(path); i++)
+            path = Path.Combine(folder, $"{stamp}-{i}.json");
         return path;
     }
 

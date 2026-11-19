@@ -283,6 +283,7 @@ public sealed class WindowsRestorePointService : IRestorePointService
             using var key = b.CreateSubKey(SrKey, writable: true);
             var original = key.GetValue(FreqName);
             var originalKind = original is null ? RegistryValueKind.DWord : key.GetValueKind(FreqName);
+            string? result;
             try
             {
                 key.SetValue(FreqName, 0, RegistryValueKind.DWord);
@@ -293,13 +294,25 @@ public sealed class WindowsRestorePointService : IRestorePointService
                 args["EventType"] = 100;       // BEGIN_SYSTEM_CHANGE
                 var res = cls.InvokeMethod("CreateRestorePoint", args, null);
                 var code = Convert.ToUInt32(res?["ReturnValue"] ?? 0u);
-                return code == 0 ? null : RestorePointReasons.FromReturnCode(code).Get(_lang);
+                result = code == 0 ? null : RestorePointReasons.FromReturnCode(code).Get(_lang);
             }
-            finally
+            catch (Exception ex)
+            {
+                result = RestorePointReasons.FromException(ex).Get(_lang);
+            }
+            try
             {
                 if (original is null) key.DeleteValue(FreqName, throwOnMissingValue: false);
                 else key.SetValue(FreqName, original, originalKind);
             }
+            catch (Exception ex)
+            {
+                var warn = _lang.StartsWith("es", StringComparison.OrdinalIgnoreCase)
+                    ? $"No se pudo restaurar el valor original de {FreqName}: {ex.Message}"
+                    : $"Could not restore the original {FreqName} value: {ex.Message}";
+                result = string.IsNullOrEmpty(result) ? warn : result + " " + warn;
+            }
+            return result;
         }
         catch (Exception ex)
         {
