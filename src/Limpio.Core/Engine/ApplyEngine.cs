@@ -5,9 +5,18 @@ using Limpio.Core.Platform;
 
 namespace Limpio.Core.Engine;
 
-public enum StepResult { Applied, Skipped, Protected, Failed, Reverted }
+public enum StepResult { Applied, Skipped, Protected, Failed, Reverted, Blocked }
 
-public sealed record ApplyEvent(string TweakId, string Target, StepResult Result, string Message, int Done, int Total);
+public enum TweakOutcome { Applied, PartiallyApplied, Blocked, Failed, Skipped }
+
+/// <summary>User choices for a run.</summary>
+public sealed class ApplyOptions
+{
+    /// <summary>Turn System Protection on for the system drive when it is off (opt-in).</summary>
+    public bool EnableSystemProtection { get; init; }
+}
+
+public sealed record ApplyEvent(string TweakId, string Target, StepResult Result, string Message, int Done, int Total, bool UcpdActive = false);
 
 public sealed class ApplyReport
 {
@@ -15,6 +24,28 @@ public sealed class ApplyReport
     public string? BackupPath { get; set; }
     public string? RestorePointWarning { get; set; }
     public int Failed => Events.Count(e => e.Result == StepResult.Failed);
+    public int Blocked => Events.Count(e => e.Result == StepResult.Blocked);
+
+    /// <summary>
+    /// Result per tweak. Partially applied: some actions worked (or were already in place) and others were blocked
+    /// by Windows. Blocked: nothing worked and Windows blocked at least one action.
+    /// </summary>
+    public IReadOnlyDictionary<string, TweakOutcome> Outcomes()
+    {
+        var map = new Dictionary<string, TweakOutcome>();
+        foreach (var g in Events.GroupBy(e => e.TweakId))
+        {
+            var applied = g.Count(e => e.Result == StepResult.Applied);
+            var ok = g.Count(e => e.Result is StepResult.Applied or StepResult.Skipped or StepResult.Protected);
+            var blocked = g.Count(e => e.Result == StepResult.Blocked);
+            var failed = g.Count(e => e.Result == StepResult.Failed);
+            map[g.Key] = failed > 0 ? TweakOutcome.Failed
+                : blocked > 0 ? (ok > 0 ? TweakOutcome.PartiallyApplied : TweakOutcome.Blocked)
+                : applied > 0 ? TweakOutcome.Applied : TweakOutcome.Skipped;
+        }
+        return map;
+    }
+
     public int Applied => Events.Count(e => e.Result is StepResult.Applied or StepResult.Reverted);
 }
 
@@ -34,23 +65,24 @@ public sealed class ApplyEngine
     /// The backup is written even when the run is cancelled or errors.
     /// </summary>
     public async Task<ApplyReport> ApplyAsync(
-        IReadOnlyList<Tweak> tweaks, IProgress<ApplyEvent>? progress = null, CancellationToken ct = default)
+        IReadOnlyList<Tweak> tweaks, IProgress<ApplyEvent>? progress = null, CancellationToken ct = default,
+        ApplyOptions? options = null)
     {
         var report = new ApplyReport();
         var backup = new BackupFile();
         var total = tweaks.Sum(t => t.Actions.Count);
         var done = 0;
 
-        void Emit(string id, string target, StepResult r, string msg)
+        void Emit(string id, string target, StepResult r, string msg, bool ucpd = false)
         {
-            var ev = new ApplyEvent(id, target, r, msg, done, total);
+            var ev = new ApplyEvent(id, target, r, msg, done, total, ucpd);
             report.Events.Add(ev);
             progress?.Report(ev);
         }
 
         try
         {
-            report.RestorePointWarning = await SafeRestorePoint();
+            report.RestorePointWarning = await SafeRestorePoint(options);
             backup.RestorePointWarning = report.RestorePointWarning;
 
             foreach (var tweak in tweaks)
@@ -78,6 +110,10 @@ public sealed class ApplyEngine
                         backup.Entries.Add(entry);
                         Emit(tweak.Id, action.Target, StepResult.Applied, "OK");
                     }
+                    catch (BlockedByWindowsException ex)
+                    {
+                        Emit(tweak.Id, action.Target, StepResult.Blocked, ex.Message, ex.UcpdRunning);
+                    }
                     catch (Exception ex) when (ex is not OperationCanceledException)
                     {
                         Emit(tweak.Id, action.Target, StepResult.Failed, ex.Message);
@@ -93,10 +129,23 @@ public sealed class ApplyEngine
         return report;
     }
 
-    private async Task<string?> SafeRestorePoint()
+    private async Task<string?> SafeRestorePoint(ApplyOptions? options)
     {
-        try { return await _restore.CreateAsync("Limpio"); }
-        catch (Exception ex) { return ex.Message; }
+        try
+        {
+            if (options?.EnableSystemProtection == true && await _restore.IsProtectionEnabledAsync() == false)
+            {
+                var enableError = await _restore.EnableProtectionAsync();
+                if (!string.IsNullOrEmpty(enableError)) return enableError;
+            }
+            return await _restore.CreateAsync("Limpio");
+        }
+        catch (Exception ex)
+        {
+            return string.IsNullOrWhiteSpace(ex.Message)
+                ? RestorePointReasons.FromException(ex).En
+                : ex.Message;
+        }
     }
 }
 

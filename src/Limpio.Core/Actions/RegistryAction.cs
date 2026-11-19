@@ -44,7 +44,15 @@ public sealed class RegistryAction : TweakAction
             e.ValueKind = cur.Kind;
             e.OldValue = Convert.ToString(cur.Value, CultureInfo.InvariantCulture);
         }
-        ctx.Registry.SetValue(Hive, Path, Name, ValueType.ToLowerInvariant(), DesiredValue);
+        try
+        {
+            ctx.Registry.SetValue(Hive, Path, Name, ValueType.ToLowerInvariant(), DesiredValue);
+        }
+        catch (Exception ex) when (ex is UnauthorizedAccessException or System.Security.SecurityException)
+        {
+            var ucpd = ctx.Services.Get("UCPD")?.Running == true;
+            throw new BlockedByWindowsException(ex.Message, ucpd, ex);
+        }
         return Task.FromResult(e);
     }
 

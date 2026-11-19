@@ -55,6 +55,12 @@ La página **Resultados** compara la primera medición ("antes", se conserva ent
 
 Analizar y medir funciona sin administrador. Para aplicar o revertir, el botón "Reiniciar como administrador" relanza la app con UAC y conserva tu selección.
 
+### Solución de problemas
+
+- **"Bloqueado por Windows"**: algunos valores (por ejemplo `HKLM\SOFTWARE\Policies\Microsoft\Dsh` del ajuste Widgets) rechazan la escritura incluso como administrador. Suele ser UCPD (User Choice Protection Driver), un servicio de Windows que protege ciertos valores. Limpio no lo desactiva ni lo evita: lo marca como bloqueado, el resto del ajuste sigue (por ejemplo la app Widgets se elimina igual) y el ajuste aparece como "aplicado parcialmente". Cambiar ese valor a mano o con otras herramientas queda bajo tu responsabilidad.
+- **No se pudo crear el punto de restauración**: el aviso muestra el motivo real. Lo más habitual es que la protección del sistema esté desactivada en C:. En la página Aplicar aparece entonces la casilla "Activar protección del sistema en C:" (equivale a `Enable-ComputerRestore -Drive C:\`). Windows también limita los puntos a uno cada 24 horas: Limpio levanta ese límite durante la llamada y restaura el valor original de `SystemRestorePointCreationFrequency`. Sin punto de restauración puedes seguir usando la copia JSON de la página Restaurar.
+- **Registro de cada ejecución**: se guarda en `%LOCALAPPDATA%\Limpio\logs\<fecha-hora>.log` y el botón "Abrir log" de la página Aplicar lo abre.
+
 ### Compilar desde el código
 
 Requiere el SDK de .NET 10.
@@ -111,6 +117,12 @@ Open **Restore**, pick a backup and click Revert (registry, services, tasks). Re
 ### Before and after
 
 **Results** compares the first measurement ("before", kept across reboots) with the latest ("after"). Reboot before measuring again for the most accurate RAM and process numbers. Export the comparison as PNG or Markdown. The sample screenshot uses demo data.
+
+### Troubleshooting
+
+- **"Blocked by Windows"**: some values (for example `HKLM\SOFTWARE\Policies\Microsoft\Dsh` from the Widgets tweak) refuse writes even as administrator. This is usually UCPD (User Choice Protection Driver), a Windows service that guards certain values. Limpio does not disable or bypass it: the action is marked as blocked, the rest of the tweak continues (the Widgets app is still removed) and the tweak is shown as "partially applied". Changing that value by hand or with other tools is your own responsibility.
+- **Could not create a restore point**: the warning shows the real reason. The most common one is System Protection turned off on C:. The Apply page then offers a "Turn on System Protection on C:" checkbox (same as `Enable-ComputerRestore -Drive C:\`). Windows also allows one restore point per 24 hours: Limpio lifts that limit for the call and puts the original `SystemRestorePointCreationFrequency` back. Without a restore point you can still use the JSON backup on the Restore page.
+- **Run log**: every run is saved to `%LOCALAPPDATA%\Limpio\logs\<timestamp>.log`, and the "Open log" button on the Apply page opens it.
 
 ### Build from source
 

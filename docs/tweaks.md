@@ -70,7 +70,7 @@ Generated from `src/Limpio.Core/Catalog/tweaks.json`. Do not edit by hand: run
 | Id | Title | Risk | Presets | Targets |
 |---|---|---|---|---|
 | `ai.copilot-policy` | Turn off Copilot | safe | minimal, recommended, aggressive | registry: `HKCU\Software\Policies\Microsoft\Windows\WindowsCopilot\TurnOffWindowsCopilot`<br>registry: `HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsCopilot\TurnOffWindowsCopilot` |
-| `ai.recall` | Turn off Recall | safe | minimal, recommended, aggressive | registry: `HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsAI\DisableAIDataAnalysis` |
+| `ai.recall` | Turn off Recall | safe | minimal, recommended, aggressive | registry: `HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsAI\DisableAIDataAnalysis`<br>registry: `HKCU\Software\Policies\Microsoft\Windows\WindowsAI\DisableAIDataAnalysis` |
 | `ai.copilot-button` | Hide Copilot button | safe | recommended, aggressive | registry: `HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced\ShowCopilotButton` |
 
 ## Ads

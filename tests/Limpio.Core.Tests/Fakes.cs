@@ -11,8 +11,15 @@ public sealed class FakeRegistry : IRegistryAccess
     public RegValue? GetValue(string hive, string path, string name) =>
         Values.TryGetValue(K(hive, path, name), out var v) ? v : null;
 
-    public void SetValue(string hive, string path, string name, string kind, object value) =>
+    /// <summary>Value names whose writes are refused, like values guarded by UCPD.</summary>
+    public HashSet<string> DenyWrite { get; } = new(StringComparer.OrdinalIgnoreCase);
+    public Exception DenyWith { get; set; } = new UnauthorizedAccessException("Attempted to perform an unauthorized operation.");
+
+    public void SetValue(string hive, string path, string name, string kind, object value)
+    {
+        if (DenyWrite.Contains(name)) throw DenyWith;
         Values[K(hive, path, name)] = new RegValue(kind, value);
+    }
 
     public void DeleteValue(string hive, string path, string name) => Values.Remove(K(hive, path, name));
 }
@@ -95,7 +102,12 @@ public sealed class FakeRestore : IRestorePointService
 {
     public string? Result { get; set; }
     public int Calls { get; private set; }
+    public bool? ProtectionEnabled { get; set; }
+    public string? EnableResult { get; set; }
+    public int EnableCalls { get; private set; }
     public Task<string?> CreateAsync(string description) { Calls++; return Task.FromResult(Result); }
+    public Task<bool?> IsProtectionEnabledAsync() => Task.FromResult(ProtectionEnabled);
+    public Task<string?> EnableProtectionAsync() { EnableCalls++; return Task.FromResult(EnableResult); }
 }
 
 public sealed class MemoryBackupStore : IBackupStore

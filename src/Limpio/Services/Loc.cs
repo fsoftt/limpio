@@ -25,5 +25,8 @@ public sealed class Loc
         return Strings.Es.TryGetValue(key, out var f) ? f : key;
     }
 
+    /// <summary>Singular/plural: looks up key.one when n is 1, key.other otherwise ({0} is n).</summary>
+    public static string P(string key, int n) => F(key + (n == 1 ? ".one" : ".other"), n);
+
     public static string F(string key, params object[] args) => string.Format(CultureInfo.CurrentCulture, T(key), args);
 }

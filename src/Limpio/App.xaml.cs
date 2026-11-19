@@ -15,6 +15,7 @@ public partial class App : Application
     protected override void OnStartup(StartupEventArgs e)
     {
         base.OnStartup(e);
+        WheelForwarding.Register();
         var options = StartupOptions.Parse(e.Args);
         Loc.Init(options.Lang);
         State = new AppState(options);
