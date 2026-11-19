@@ -1,0 +1,94 @@
+<Page x:Class="Limpio.Views.ApplyPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+      xmlns:svc="clr-namespace:Limpio.Services"
+      Title="Apply">
+    <Page.Resources>
+        <BooleanToVisibilityConverter x:Key="B2V" />
+    </Page.Resources>
+    <Grid Margin="32,12,32,24">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0">
+            <TextBlock Style="{StaticResource PageTitle}" Text="{svc:L apply.title}" />
+            <TextBlock Style="{StaticResource PageSubtitle}" Margin="0,4,0,16" Text="{svc:L apply.subtitle}" />
+        </StackPanel>
+
+        <Border Grid.Row="1" Style="{StaticResource CardBorder}" Margin="0,0,0,12">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <StackPanel>
+                    <TextBlock Style="{StaticResource SectionTitle}" Text="{Binding ConfirmText}" />
+                    <TextBlock Style="{StaticResource Muted}" Margin="0,6,0,0" Text="{svc:L apply.safety}" />
+                    <TextBlock Style="{StaticResource Muted}" Margin="0,4,0,0" Text="{svc:L apply.appsNote}" />
+                    <TextBlock Style="{StaticResource Muted}" Margin="0,8,0,0" Foreground="#D98E04"
+                               Visibility="{Binding RestoreWarning, Converter={StaticResource S2V}}"
+                               Text="{Binding RestoreWarning}" />
+                    <TextBlock FontWeight="SemiBold" Margin="0,10,0,0" TextWrapping="Wrap" Text="{Binding ResultText}"
+                               Visibility="{Binding IsDone, Converter={StaticResource B2V}}" />
+                    <ProgressBar Margin="0,12,0,0" Maximum="100" Height="6" Value="{Binding Progress}"
+                                 Visibility="{Binding IsRunning, Converter={StaticResource B2V}}" />
+                </StackPanel>
+                <ui:Button Grid.Column="1" VerticalAlignment="Top" Margin="24,0,0,0" Appearance="Primary"
+                           Icon="{ui:SymbolIcon Play24}" Content="{Binding ButtonText}"
+                           Command="{Binding StartCommand}" />
+            </Grid>
+        </Border>
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="12" />
+                <ColumnDefinition Width="1.4*" />
+            </Grid.ColumnDefinitions>
+            <Border Style="{StaticResource CardBorder}" Padding="16">
+                <DockPanel>
+                    <TextBlock DockPanel.Dock="Top" Style="{StaticResource SectionTitle}" Margin="0,0,0,8" Text="{svc:L apply.summary}" />
+                    <TextBlock DockPanel.Dock="Top" Style="{StaticResource Muted}" Text="{svc:L apply.empty}"
+                               Visibility="{Binding HasSummary, Converter={StaticResource InvB2V}}" />
+                    <ListBox ItemsSource="{Binding Summary}" Background="Transparent" BorderThickness="0"
+                             ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Margin="0,2">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="{Binding Title}" TextTrimming="CharacterEllipsis" />
+                                    <Border Grid.Column="1" Style="{StaticResource Badge}" Padding="6,1" Background="{Binding RiskBrush}">
+                                        <TextBlock FontSize="11" Foreground="White" Text="{Binding RiskText}" />
+                                    </Border>
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </DockPanel>
+            </Border>
+            <Border Grid.Column="2" Style="{StaticResource CardBorder}" Padding="16">
+                <DockPanel>
+                    <TextBlock DockPanel.Dock="Top" Style="{StaticResource SectionTitle}" Margin="0,0,0,8" Text="{svc:L apply.log}" />
+                    <ListBox x:Name="LogList" ItemsSource="{Binding Log}" Background="Transparent" BorderThickness="0"
+                             ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal" Margin="0,2">
+                                    <ui:SymbolIcon Symbol="{Binding Glyph}" Foreground="{Binding Brush}" Margin="0,0,8,0" />
+                                    <TextBlock Text="{Binding Text}" TextWrapping="Wrap" MaxWidth="560" FontSize="12" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </DockPanel>
+            </Border>
+        </Grid>
+    </Grid>
+</Page>

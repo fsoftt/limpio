@@ -1,0 +1,111 @@
+<Page x:Class="Limpio.Views.TweaksPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+      xmlns:svc="clr-namespace:Limpio.Services"
+      Title="Tweaks">
+    <Page.Resources>
+        <BooleanToVisibilityConverter x:Key="B2V" />
+    </Page.Resources>
+    <Grid Margin="32,12,32,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0">
+            <TextBlock Style="{StaticResource PageTitle}" Text="{svc:L tweaks.title}" />
+            <TextBlock Style="{StaticResource PageSubtitle}" Margin="0,4,0,16" Text="{svc:L tweaks.subtitle}" />
+        </StackPanel>
+
+        <Border Grid.Row="1" Style="{StaticResource CardBorder}" Padding="16" Margin="0,0,0,12">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0" Margin="0,0,24,0">
+                    <TextBlock Style="{StaticResource Muted}" Text="{svc:L tweaks.preset}" />
+                    <ComboBox Width="200" Margin="0,4,0,0" ItemsSource="{Binding Presets}"
+                              SelectedItem="{Binding SelectedPreset}" DisplayMemberPath="Label" />
+                </StackPanel>
+                <StackPanel Grid.Column="1" VerticalAlignment="Bottom" Margin="0,0,24,0">
+                    <TextBlock Style="{StaticResource Muted}" Text="{svc:L tweaks.search}" />
+                    <ui:TextBox Margin="0,4,0,0" PlaceholderText="{svc:L tweaks.searchHint}"
+                                Text="{Binding Search, UpdateSourceTrigger=PropertyChanged}"
+                                Icon="{ui:SymbolIcon Search24}" />
+                </StackPanel>
+                <StackPanel Grid.Column="2" VerticalAlignment="Bottom">
+                    <TextBlock HorizontalAlignment="Right" Foreground="{DynamicResource AccentFillColorDefaultBrush}"
+                               FontWeight="SemiBold" FontSize="16">
+                        <Run Text="{Binding SelectedCount, Mode=OneWay}" /><Run Text=" " /><Run Text="{svc:L tweaks.selected}" />
+                    </TextBlock>
+                    <StackPanel Orientation="Horizontal" Margin="0,6,0,0" HorizontalAlignment="Right">
+                        <ui:Button Content="{svc:L tweaks.selectAll}" Click="OnSelectAll" />
+                        <ui:Button Margin="8,0,0,0" Content="{svc:L tweaks.selectNone}" Click="OnSelectNone" />
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+                <TextBlock Style="{StaticResource Muted}" Margin="2,0,0,8" Text="{Binding PresetHint}" />
+                <ItemsControl ItemsSource="{Binding Groups}" Margin="0,0,0,24">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <ui:CardExpander Margin="0,0,0,8" IsExpanded="True" ContentPadding="0">
+                                <ui:CardExpander.Header>
+                                    <StackPanel Orientation="Horizontal">
+                                        <ui:SymbolIcon Symbol="{Binding Glyph}" FontSize="20" Margin="0,0,12,0"
+                                                       Foreground="{DynamicResource AccentFillColorDefaultBrush}" />
+                                        <TextBlock Text="{Binding Title}" FontWeight="SemiBold" FontSize="15" VerticalAlignment="Center" />
+                                        <TextBlock Text="{Binding CountText}" Margin="10,0,0,0" VerticalAlignment="Center"
+                                                   Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
+                                    </StackPanel>
+                                </ui:CardExpander.Header>
+                                <ItemsControl ItemsSource="{Binding Items}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <Border BorderThickness="0,1,0,0" Padding="16,12"
+                                                    BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}">
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="*" />
+                                                        <ColumnDefinition Width="Auto" />
+                                                        <ColumnDefinition Width="Auto" />
+                                                        <ColumnDefinition Width="Auto" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <StackPanel Grid.Column="0" Margin="0,0,16,0">
+                                                        <TextBlock Text="{Binding Title}" FontWeight="SemiBold" TextWrapping="Wrap" />
+                                                        <TextBlock Style="{StaticResource Muted}" FontSize="12" Text="{Binding Description}" />
+                                                        <TextBlock FontSize="12" TextWrapping="Wrap" Foreground="#D98E04" Text="{Binding Note}"
+                                                                   Visibility="{Binding HasNote, Converter={StaticResource B2V}}" />
+                                                    </StackPanel>
+                                                    <Border Grid.Column="1" Style="{StaticResource Badge}" Margin="0,0,10,0"
+                                                            Background="{DynamicResource ControlFillColorSecondaryBrush}"
+                                                            Visibility="{Binding HasState, Converter={StaticResource B2V}}">
+                                                        <TextBlock FontSize="12" Text="{Binding StateText}"
+                                                                   Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
+                                                    </Border>
+                                                    <Border Grid.Column="2" Style="{StaticResource Badge}" Margin="0,0,14,0"
+                                                            Background="{Binding RiskBrush}">
+                                                        <TextBlock FontSize="12" FontWeight="SemiBold" Foreground="White" Text="{Binding RiskText}" />
+                                                    </Border>
+                                                    <ui:ToggleSwitch Grid.Column="3" IsChecked="{Binding IsSelected, Mode=TwoWay}"
+                                                                     IsEnabled="{Binding Actionable}" />
+                                                </Grid>
+                                            </Border>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </ui:CardExpander>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>

@@ -1,0 +1,79 @@
+<Page x:Class="Limpio.Views.RestorePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+      xmlns:svc="clr-namespace:Limpio.Services"
+      Title="Restore">
+    <Page.Resources>
+        <BooleanToVisibilityConverter x:Key="B2V" />
+    </Page.Resources>
+    <Grid Margin="32,12,32,24">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <StackPanel>
+            <TextBlock Style="{StaticResource PageTitle}" Text="{svc:L restore.title}" />
+            <TextBlock Style="{StaticResource PageSubtitle}" Margin="0,4,0,16" Text="{svc:L restore.subtitle}" />
+        </StackPanel>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="12" />
+                <ColumnDefinition Width="1.3*" />
+            </Grid.ColumnDefinitions>
+
+            <Border Style="{StaticResource CardBorder}" Padding="16">
+                <DockPanel>
+                    <TextBlock DockPanel.Dock="Top" Style="{StaticResource SectionTitle}" Margin="0,0,0,8" Text="{svc:L restore.backups}" />
+                    <TextBlock DockPanel.Dock="Top" Style="{StaticResource Muted}" Text="{svc:L restore.none}"
+                               Visibility="{Binding HasBackups, Converter={StaticResource InvB2V}}" />
+                    <ListBox ItemsSource="{Binding Backups}" SelectedItem="{Binding Selected}" Background="Transparent" BorderThickness="0">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Margin="0,4">
+                                    <TextBlock FontWeight="SemiBold" Text="{Binding Title}" />
+                                    <TextBlock Style="{StaticResource Muted}" FontSize="12" Text="{Binding Subtitle}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </DockPanel>
+            </Border>
+
+            <Border Grid.Column="2" Style="{StaticResource CardBorder}" Padding="16">
+                <DockPanel>
+                    <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,0,0,12">
+                        <ui:Button Appearance="Primary" Icon="{ui:SymbolIcon ArrowUndo24}" Content="{Binding RevertText}"
+                                   Command="{Binding RevertCommand}" />
+                        <ui:Button Margin="8,0,0,0" Icon="{ui:SymbolIcon Delete24}" Content="{svc:L restore.delete}"
+                                   Command="{Binding DeleteCommand}" />
+                        <ui:ProgressRing Margin="12,0,0,0" Width="24" Height="24" IsIndeterminate="True"
+                                         Visibility="{Binding IsBusy, Converter={StaticResource B2V}}" />
+                    </StackPanel>
+                    <TextBlock DockPanel.Dock="Top" FontWeight="SemiBold" TextWrapping="Wrap" Margin="0,0,0,8" Text="{Binding Status}" />
+                    <TextBlock DockPanel.Dock="Top" Style="{StaticResource SectionTitle}" Margin="0,4,0,4" Text="{svc:L restore.removedApps}" />
+                    <TextBlock DockPanel.Dock="Top" Style="{StaticResource Muted}" FontSize="12" Margin="0,0,0,6" Text="{svc:L restore.appsHint}" />
+                    <ListBox DockPanel.Dock="Top" MaxHeight="190" ItemsSource="{Binding RemovedApps}" Background="Transparent" BorderThickness="0">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Margin="0,2">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock VerticalAlignment="Center" Text="{Binding Name}" />
+                                    <ui:Button Grid.Column="1" Icon="{ui:SymbolIcon Store24}" Content="{svc:L restore.store}"
+                                               Command="{Binding DataContext.OpenStoreCommand, RelativeSource={RelativeSource AncestorType=Page}}"
+                                               CommandParameter="{Binding StoreLink}" />
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                    <ListBox ItemsSource="{Binding Log}" Background="Transparent" BorderThickness="0" FontSize="12" />
+                </DockPanel>
+            </Border>
+        </Grid>
+    </Grid>
+</Page>

@@ -1,0 +1,101 @@
+<Page x:Class="Limpio.Views.HomePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+      xmlns:svc="clr-namespace:Limpio.Services"
+      xmlns:ctl="clr-namespace:Limpio.Controls"
+      Title="Home">
+    <Page.Resources>
+        <BooleanToVisibilityConverter x:Key="B2V" />
+    </Page.Resources>
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="32,12,32,32">
+            <TextBlock Style="{StaticResource PageTitle}" Text="{svc:L home.title}" />
+            <TextBlock Style="{StaticResource PageSubtitle}" Margin="0,4,0,24" Text="{svc:L home.subtitle}" />
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="340" />
+                    <ColumnDefinition Width="20" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Border Grid.Column="0" Style="{StaticResource CardBorder}">
+                    <StackPanel HorizontalAlignment="Center">
+                        <TextBlock Style="{StaticResource SectionTitle}" HorizontalAlignment="Center" Text="{svc:L home.score}" />
+                        <ctl:Gauge Width="210" Height="210" Margin="0,16,0,8" Thickness="16"
+                                   Value="{Binding PrivacyScore}"
+                                   TrackBrush="#33808080"
+                                   ArcBrush="{DynamicResource AccentFillColorDefaultBrush}"
+                                   TextBrush="{DynamicResource TextFillColorPrimaryBrush}" />
+                        <TextBlock Style="{StaticResource Muted}" TextAlignment="Center" MaxWidth="260" Text="{svc:L home.scoreHint}" />
+                    </StackPanel>
+                </Border>
+
+                <StackPanel Grid.Column="2">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="12" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="12" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Border Grid.Column="0" Style="{StaticResource CardBorder}">
+                            <StackPanel>
+                                <TextBlock FontSize="34" FontWeight="SemiBold" Foreground="#D98E04" Text="{Binding PendingCount}" />
+                                <TextBlock Style="{StaticResource Muted}" Text="{svc:L home.pending}" />
+                            </StackPanel>
+                        </Border>
+                        <Border Grid.Column="2" Style="{StaticResource CardBorder}">
+                            <StackPanel>
+                                <TextBlock FontSize="34" FontWeight="SemiBold" Foreground="#2E9E5B" Text="{Binding AppliedCount}" />
+                                <TextBlock Style="{StaticResource Muted}" Text="{svc:L home.applied}" />
+                            </StackPanel>
+                        </Border>
+                        <Border Grid.Column="4" Style="{StaticResource CardBorder}">
+                            <StackPanel>
+                                <TextBlock FontSize="34" FontWeight="SemiBold" Foreground="{DynamicResource TextFillColorSecondaryBrush}" Text="{Binding NotPresentCount}" />
+                                <TextBlock Style="{StaticResource Muted}" Text="{svc:L home.notPresent}" />
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+
+                    <Border Style="{StaticResource CardBorder}" Margin="0,12,0,0">
+                        <StackPanel>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <ui:SymbolIcon Symbol="ShieldKeyhole24" FontSize="28" Margin="0,0,16,0"
+                                           Foreground="{DynamicResource AccentFillColorDefaultBrush}" />
+                            <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                <TextBlock Style="{StaticResource SectionTitle}" Text="{svc:L home.permissions}" />
+                                <TextBlock Style="{StaticResource Muted}" Text="{Binding ElevationText}" />
+                            </StackPanel>
+                        </Grid>
+                        <ui:Button Appearance="Primary" Content="{svc:L admin.restart}" Margin="44,12,0,0"
+                                   Visibility="{Binding NotElevated, Converter={StaticResource B2V}}"
+                                   Click="OnRestartAdmin" />
+                        </StackPanel>
+                    </Border>
+
+                    <Border Style="{StaticResource CardBorder}" Margin="0,12,0,0">
+                        <StackPanel>
+                            <TextBlock Style="{StaticResource SectionTitle}" Text="{svc:L home.scanTitle}" />
+                            <TextBlock Style="{StaticResource Muted}" Margin="0,4,0,12" Text="{svc:L home.scanText}" />
+                            <StackPanel Orientation="Horizontal">
+                                <ui:Button Appearance="Primary" Icon="{ui:SymbolIcon ArrowSync24}" Content="{svc:L home.scan}"
+                                           IsEnabled="{Binding CanScan}" Click="OnScan" />
+                                <ui:Button Margin="8,0,0,0" Icon="{ui:SymbolIcon Options24}" Content="{svc:L home.review}" Click="OnReview" />
+                                <ui:ProgressRing Margin="16,0,0,0" Width="24" Height="24" IsIndeterminate="True"
+                                                 Visibility="{Binding IsScanning, Converter={StaticResource B2V}}" />
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+    </ScrollViewer>
+</Page>
