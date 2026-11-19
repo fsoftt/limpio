@@ -1,0 +1,1629 @@
+{
+  "version": 1,
+  "tweaks": [
+    {
+      "id": "apps.bing-news",
+      "category": "apps",
+      "title": {
+        "es": "Noticias (Bing)",
+        "en": "Bing News"
+      },
+      "description": {
+        "es": "Aplicación de noticias de Microsoft con anuncios.",
+        "en": "Microsoft news app with ads."
+      },
+      "risk": "safe",
+      "presets": [
+        "minimal",
+        "recommended",
+        "aggressive"
+      ],
+      "actions": [
+        {
+          "type": "appx",
+          "packageName": "Microsoft.BingNews"
+        }
+      ]
+    },
+    {
+      "id": "apps.bing-weather",
+      "category": "apps",
+      "title": {
+        "es": "El Tiempo (Bing)",
+        "en": "Bing Weather"
+      },
+      "description": {
+        "es": "Aplicación del tiempo de Microsoft.",
+        "en": "Microsoft weather app."
+      },
+      "risk": "safe",
+      "presets": [
+        "minimal",
+        "recommended",
+        "aggressive"
+      ],
+      "actions": [
+        {
+          "type": "appx",
+          "packageName": "Microsoft.BingWeather"
+        }
+      ]
+    },
+    {
+      "id": "apps.bing-search",
+      "category": "apps",
+      "title": {
+        "es": "Bing Search",
+        "en": "Bing Search"
+      },
+      "description": {
+        "es": "Componente de búsqueda web de Bing en el menú Inicio.",
+        "en": "Bing web search component for Start."
+      },
+      "risk": "safe",
+      "presets": [
+        "recommended",
+        "aggressive"
+      ],
+      "actions": [
+        {
+          "type": "appx",
+          "packageName": "Microsoft.BingSearch"
+        }
+      ]
+    },
+    {
+      "id": "apps.start-experiences",
+      "category": "apps",
+      "title": {
+        "es": "Start Experiences",
+        "en": "Start Experiences"
+      },
+      "description": {
+        "es": "Contenido promocionado del menú Inicio.",
+        "en": "Promoted content for the Start menu."
+      },
+      "risk": "safe",
+      "presets": [
+        "recommended",
+        "aggressive"
+      ],
+      "actions": [
+        {
+          "type": "appx",
+          "packageName": "Microsoft.StartExperiencesApp"
+        }
+      ]
+    },
+    {
+      "id": "apps.solitaire",
+      "category": "apps",
+      "title": {
+        "es": "Solitaire Collection",
+        "en": "Solitaire Collection"
+      },
+      "description": {
+        "es": "Juegos de cartas con anuncios y compras.",
+        "en": "Card games with ads and purchases."
+      },
+      "risk": "safe",
+      "presets": [
+        "minimal",
+        "recommended",
+        "aggressive"
+      ],
+      "actions": [
+        {
+          "type": "appx",
+          "packageName": "Microsoft.MicrosoftSolitaireCollection"
+        }
+      ]
+    },
+    {
+      "id": "apps.clipchamp",
+      "category": "apps",
+      "title": {
+        "es": "Clipchamp",
+        "en": "Clipchamp"
+      },
+      "description": {
+        "es": "Editor de vídeo de Microsoft.",
+        "en": "Microsoft video editor."
+      },
+      "risk": "safe",
+      "presets": [
+        "minimal",
+        "recommended",
+        "aggressive"
+      ],
+      "actions": [
+        {
+          "type": "appx",
+          "packageName": "Clipchamp.Clipchamp"
+        }
+      ]
+    },
+    {
+      "id": "apps.power-automate",
+      "category": "apps",
+      "title": {
+        "es": "Power Automate",
+        "en": "Power Automate"
+      },
+      "description": {
+        "es": "Automatización de escritorio.",
+        "en": "Desktop automation."
+      },
+      "risk": "safe",
+      "presets": [
+        "recommended",
+        "aggressive"
+      ],
+      "actions": [
+        {
+          "type": "appx",
+          "packageName": "Microsoft.PowerAutomateDesktop"
+        }
+      ]
+    },
+    {
+      "id": "apps.todo",
+      "category": "apps",
+      "title": {
+        "es": "Microsoft To Do",
+        "en": "Microsoft To Do"
+      },
+      "description": {
+        "es": "Lista de tareas de Microsoft.",
+        "en": "Microsoft to-do list app."
+      },
+      "risk": "safe",
+      "presets": [
+        "recommended",
+        "aggressive"
+      ],
+      "actions": [
+        {
+          "type": "appx",
+          "packageName": "Microsoft.Todos"
+        }
+      ]
+    },
+    {
+      "id": "apps.get-help",
+      "category": "apps",
+      "title": {
+        "es": "Obtener ayuda",
+        "en": "Get Help"
+      },
+      "description": {
+        "es": "Aplicación de soporte de Microsoft.",
+        "en": "Microsoft support app."
+      },
+      "risk": "safe",
+      "presets": [
+        "recommended",
+        "aggressive"
+      ],
+      "actions": [
+        {
+          "type": "appx",
+          "packageName": "Microsoft.GetHelp"
+        }
+      ]
+    },
+    {
+      "id": "apps.feedback-hub",
+      "category": "apps",
+      "title": {
+        "es": "Centro de opiniones",
+        "en": "Feedback Hub"
+      },
+      "description": {
+        "es": "Envía comentarios a Microsoft y genera telemetría.",
+        "en": "Sends feedback to Microsoft and generates telemetry."
+      },
+      "risk": "safe",
+      "presets": [
+        "minimal",
+        "recommended",
+        "aggressive"
+      ],
+      "actions": [
+        {
+          "type": "appx",
+          "packageName": "Microsoft.WindowsFeedbackHub"
+        }
+      ]
+    },
+    {
+      "id": "apps.groove",
+      "category": "apps",
+      "title": {
+        "es": "Reproductor de música (Zune)",
+        "en": "Groove Music (Zune)"
+      },
+      "description": {
+        "es": "Reproductor de música heredado.",
+        "en": "Legacy music player."
+      },
+      "risk": "moderate",
+      "presets": [
+        "aggressive"
+      ],
+      "actions": [
+        {
+          "type": "appx",
+          "packageName": "Microsoft.ZuneMusic"
+        }
+      ],
+      "note": {
+        "es": "Puede ser tu reproductor multimedia actual.",
+        "en": "This may be your current media player."
+      }
+    },
+    {
+      "id": "apps.office-hub",
+      "category": "apps",
+      "title": {
+        "es": "Microsoft 365 (Office Hub)",
+        "en": "Microsoft 365 (Office Hub)"
+      },
+      "description": {
+        "es": "Acceso directo promocional a Office.",
+        "en": "Promotional shortcut to Office."
+      },
+      "risk": "safe",
+      "presets": [
+        "minimal",
+        "recommended",
+        "aggressive"
+      ],
+      "actions": [
+        {
+          "type": "appx",
+          "packageName": "Microsoft.MicrosoftOfficeHub"
+        }
+      ]
+    },
+    {
+      "id": "apps.new-outlook",
+      "category": "apps",
+      "title": {
+        "es": "Nuevo Outlook",
+        "en": "New Outlook"
+      },
+      "description": {
+        "es": "Cliente de correo nuevo que sincroniza datos con la nube de Microsoft.",
+        "en": "New mail client that syncs data with the Microsoft cloud."
+      },
+      "risk": "safe",
+      "presets": [
+        "recommended",
+        "aggressive"
+      ],
+      "actions": [
+        {
+          "type": "appx",
+          "packageName": "Microsoft.OutlookForWindows"
+        }
+      ]
+    },
+    {
+      "id": "apps.teams",
+      "category": "apps",
+      "title": {
+        "es": "Microsoft Teams (personal)",
+        "en": "Microsoft Teams (personal)"
+      },
+      "description": {
+        "es": "Chat de Teams preinstalado.",
+        "en": "Preinstalled Teams chat."
+      },
+      "risk": "safe",
+      "presets": [
+        "recommended",
+        "aggressive"
+      ],
+      "actions": [
+        {
+          "type": "appx",
+          "packageName": "MicrosoftTeams"
+        },
+        {
+          "type": "appx",
+          "packageName": "MSTeams"
+        }
+      ]
+    },
+    {
+      "id": "apps.cortana",
+      "category": "apps",
+      "title": {
+        "es": "Cortana",
+        "en": "Cortana"
+      },
+      "description": {
+        "es": "Asistente heredado.",
+        "en": "Legacy assistant."
+      },
+      "risk": "safe",
+      "presets": [
+        "minimal",
+        "recommended",
+        "aggressive"
+      ],
+      "actions": [
+        {
+          "type": "appx",
+          "packageName": "Microsoft.549981C3F5F10"
+        }
+      ]
+    },
+    {
+      "id": "apps.copilot-app",
+      "category": "apps",
+      "title": {
+        "es": "Copilot (aplicación)",
+        "en": "Copilot (app)"
+      },
+      "description": {
+        "es": "Aplicación de Copilot.",
+        "en": "Copilot app."
+      },
+      "risk": "safe",
+      "presets": [
+        "recommended",
+        "aggressive"
+      ],
+      "actions": [
+        {
+          "type": "appx",
+          "packageName": "Microsoft.Copilot"
+        }
+      ]
+    },
+    {
+      "id": "apps.xbox",
+      "category": "apps",
+      "title": {
+        "es": "Xbox y servicios de juegos",
+        "en": "Xbox and gaming services"
+      },
+      "description": {
+        "es": "Aplicación Xbox, barra de juegos y proveedores de identidad.",
+        "en": "Xbox app, Game Bar and identity providers."
+      },
+      "risk": "moderate",
+      "presets": [
+        "aggressive"
+      ],
+      "actions": [
+        {
+          "type": "appx",
+          "packageName": "Microsoft.GamingApp"
+        },
+        {
+          "type": "appx",
+          "packageName": "Microsoft.XboxGamingOverlay"
+        },
+        {
+          "type": "appx",
+          "packageName": "Microsoft.XboxSpeechToTextOverlay"
+        },
+        {
+          "type": "appx",
+          "packageName": "Microsoft.Xbox.TCUI"
+        },
+        {
+          "type": "appx",
+          "packageName": "Microsoft.XboxIdentityProvider"
+        }
+      ],
+      "note": {
+        "es": "Déjalo si juegas en PC.",
+        "en": "Keep it if you play games on PC."
+      }
+    },
+    {
+      "id": "apps.phone-link",
+      "category": "apps",
+      "title": {
+        "es": "Phone Link (Enlace a móvil)",
+        "en": "Phone Link"
+      },
+      "description": {
+        "es": "Conecta el móvil con Windows (YourPhone y CrossDevice).",
+        "en": "Links your phone to Windows (YourPhone and CrossDevice)."
+      },
+      "risk": "moderate",
+      "presets": [
+        "aggressive"
+      ],
+      "actions": [
+        {
+          "type": "appx",
+          "packageName": "Microsoft.YourPhone"
+        },
+        {
+          "type": "appx",
+          "packageName": "MicrosoftWindows.CrossDevice"
+        }
+      ],
+      "note": {
+        "es": "Déjalo si usas Phone Link.",
+        "en": "Keep it if you use Phone Link."
+      }
+    },
+    {
+      "id": "apps.widgets",
+      "category": "apps",
+      "title": {
+        "es": "Widgets",
+        "en": "Widgets"
+      },
+      "description": {
+        "es": "Panel de widgets y noticias (WebExperience).",
+        "en": "Widgets and news panel (WebExperience)."
+      },
+      "risk": "moderate",
+      "presets": [
+        "recommended",
+        "aggressive"
+      ],
+      "actions": [
+        {
+          "type": "appx",
+          "packageName": "MicrosoftWindows.Client.WebExperience"
+        },
+        {
+          "type": "registry",
+          "hive": "HKLM",
+          "path": "SOFTWARE\\Policies\\Microsoft\\Dsh",
+          "name": "AllowNewsAndInterests",
+          "valueType": "dword",
+          "value": 0
+        }
+      ]
+    },
+    {
+      "id": "apps.sticky-notes",
+      "category": "apps",
+      "title": {
+        "es": "Sticky Notes",
+        "en": "Sticky Notes"
+      },
+      "description": {
+        "es": "Notas adhesivas.",
+        "en": "Sticky notes."
+      },
+      "risk": "moderate",
+      "presets": [],
+      "actions": [
+        {
+          "type": "appx",
+          "packageName": "Microsoft.MicrosoftStickyNotes"
+        }
+      ]
+    },
+    {
+      "id": "apps.skype",
+      "category": "apps",
+      "title": {
+        "es": "Skype",
+        "en": "Skype"
+      },
+      "description": {
+        "es": "Cliente de Skype heredado.",
+        "en": "Legacy Skype client."
+      },
+      "risk": "safe",
+      "presets": [
+        "recommended",
+        "aggressive"
+      ],
+      "actions": [
+        {
+          "type": "appx",
+          "packageName": "Microsoft.SkypeApp"
+        }
+      ]
+    },
+    {
+      "id": "apps.legacy-misc",
+      "category": "apps",
+      "title": {
+        "es": "Contactos y Mixed Reality",
+        "en": "People and Mixed Reality"
+      },
+      "description": {
+        "es": "Aplicaciones heredadas sin uso habitual.",
+        "en": "Legacy apps rarely used."
+      },
+      "risk": "safe",
+      "presets": [
+        "recommended",
+        "aggressive"
+      ],
+      "actions": [
+        {
+          "type": "appx",
+          "packageName": "Microsoft.People"
+        },
+        {
+          "type": "appx",
+          "packageName": "Microsoft.MixedReality.Portal"
+        },
+        {
+          "type": "appx",
+          "packageName": "Microsoft.Microsoft3DViewer"
+        },
+        {
+          "type": "appx",
+          "packageName": "Microsoft.Print3D"
+        }
+      ]
+    },
+    {
+      "id": "apps.tips",
+      "category": "apps",
+      "title": {
+        "es": "Asistencia rápida y Consejos",
+        "en": "Quick Assist and Tips"
+      },
+      "description": {
+        "es": "Soporte remoto y consejos.",
+        "en": "Remote support and tips."
+      },
+      "risk": "moderate",
+      "presets": [
+        "aggressive"
+      ],
+      "actions": [
+        {
+          "type": "appx",
+          "packageName": "MicrosoftCorporationII.QuickAssist"
+        },
+        {
+          "type": "appx",
+          "packageName": "Microsoft.Getstarted"
+        }
+      ]
+    },
+    {
+      "id": "apps.onedrive",
+      "category": "apps",
+      "title": {
+        "es": "Desinstalar OneDrive",
+        "en": "Uninstall OneDrive"
+      },
+      "description": {
+        "es": "Desinstala OneDrive y quita su inicio automático. No borra tu carpeta OneDrive.",
+        "en": "Uninstalls OneDrive and removes its autostart. Your OneDrive folder is never deleted."
+      },
+      "risk": "moderate",
+      "presets": [
+        "aggressive"
+      ],
+      "actions": [
+        {
+          "type": "win32Uninstall",
+          "displayName": "Microsoft OneDrive",
+          "processName": "OneDrive",
+          "uninstallers": [
+            "%SystemRoot%\\System32\\OneDriveSetup.exe",
+            "%SystemRoot%\\SysWOW64\\OneDriveSetup.exe",
+            "%LOCALAPPDATA%\\Microsoft\\OneDrive\\*\\OneDriveSetup.exe"
+          ],
+          "uninstallArgs": "/uninstall",
+          "runValueName": "OneDrive",
+          "protectKnownFolders": true,
+          "revertHint": "https://www.microsoft.com/microsoft-365/onedrive/download  |  winget install Microsoft.OneDrive"
+        }
+      ],
+      "note": {
+        "es": "Se omite si Escritorio, Documentos o Imágenes están dentro de OneDrive. Reinstala desde microsoft.com/microsoft-365/onedrive/download o con winget install Microsoft.OneDrive.",
+        "en": "Refused if Desktop, Documents or Pictures live inside OneDrive. Reinstall from microsoft.com/microsoft-365/onedrive/download or with winget install Microsoft.OneDrive."
+      }
+    },
+    {
+      "id": "gaming.gamebar",
+      "category": "privacy",
+      "title": {
+        "es": "Barra de juegos y captura (Game Bar)",
+        "en": "Game Bar and capture"
+      },
+      "description": {
+        "es": "Desactiva la captura de Game DVR y la barra de juegos.",
+        "en": "Turns off Game DVR capture and the Game Bar."
+      },
+      "risk": "moderate",
+      "presets": [
+        "aggressive"
+      ],
+      "actions": [
+        {
+          "type": "registry",
+          "hive": "HKCU",
+          "path": "Software\\Microsoft\\Windows\\CurrentVersion\\GameDVR",
+          "name": "AppCaptureEnabled",
+          "valueType": "dword",
+          "value": 0
+        },
+        {
+          "type": "registry",
+          "hive": "HKCU",
+          "path": "System\\GameConfigStore",
+          "name": "GameDVR_Enabled",
+          "valueType": "dword",
+          "value": 0
+        }
+      ],
+      "note": {
+        "es": "Déjalo si grabas partidas con Game Bar.",
+        "en": "Keep it if you record gameplay with Game Bar."
+      }
+    },
+    {
+      "id": "apps.oem-mcafee",
+      "category": "apps",
+      "title": {
+        "es": "McAfee (preinstalado)",
+        "en": "McAfee (preinstalled)"
+      },
+      "description": {
+        "es": "Aplicación promocional que algunos fabricantes preinstalan. Se detecta solo si está presente.",
+        "en": "Promotional app some vendors preinstall. Detected only when present."
+      },
+      "risk": "safe",
+      "presets": [
+        "aggressive"
+      ],
+      "actions": [
+        {
+          "type": "appx",
+          "packageName": "*McAfee*"
+        }
+      ]
+    },
+    {
+      "id": "apps.oem-norton",
+      "category": "apps",
+      "title": {
+        "es": "Norton (preinstalado)",
+        "en": "Norton (preinstalled)"
+      },
+      "description": {
+        "es": "Aplicación promocional que algunos fabricantes preinstalan. Se detecta solo si está presente.",
+        "en": "Promotional app some vendors preinstall. Detected only when present."
+      },
+      "risk": "safe",
+      "presets": [
+        "aggressive"
+      ],
+      "actions": [
+        {
+          "type": "appx",
+          "packageName": "*Norton*"
+        }
+      ]
+    },
+    {
+      "id": "apps.oem-wildtangent",
+      "category": "apps",
+      "title": {
+        "es": "WildTangent Games (preinstalado)",
+        "en": "WildTangent Games (preinstalled)"
+      },
+      "description": {
+        "es": "Aplicación promocional que algunos fabricantes preinstalan. Se detecta solo si está presente.",
+        "en": "Promotional app some vendors preinstall. Detected only when present."
+      },
+      "risk": "safe",
+      "presets": [
+        "aggressive"
+      ],
+      "actions": [
+        {
+          "type": "appx",
+          "packageName": "*WildTangent*"
+        }
+      ]
+    },
+    {
+      "id": "apps.oem-booking",
+      "category": "apps",
+      "title": {
+        "es": "Booking.com (preinstalado)",
+        "en": "Booking.com (preinstalled)"
+      },
+      "description": {
+        "es": "Aplicación promocional que algunos fabricantes preinstalan. Se detecta solo si está presente.",
+        "en": "Promotional app some vendors preinstall. Detected only when present."
+      },
+      "risk": "safe",
+      "presets": [
+        "aggressive"
+      ],
+      "actions": [
+        {
+          "type": "appx",
+          "packageName": "*Booking*"
+        }
+      ]
+    },
+    {
+      "id": "apps.oem-spotify",
+      "category": "apps",
+      "title": {
+        "es": "Spotify (preinstalado)",
+        "en": "Spotify (preinstalled)"
+      },
+      "description": {
+        "es": "Aplicación promocional que algunos fabricantes preinstalan. Se detecta solo si está presente.",
+        "en": "Promotional app some vendors preinstall. Detected only when present."
+      },
+      "risk": "safe",
+      "presets": [
+        "aggressive"
+      ],
+      "actions": [
+        {
+          "type": "appx",
+          "packageName": "SpotifyAB.SpotifyMusic"
+        }
+      ]
+    },
+    {
+      "id": "apps.oem-disney",
+      "category": "apps",
+      "title": {
+        "es": "Disney+ (preinstalado)",
+        "en": "Disney+ (preinstalled)"
+      },
+      "description": {
+        "es": "Aplicación promocional que algunos fabricantes preinstalan. Se detecta solo si está presente.",
+        "en": "Promotional app some vendors preinstall. Detected only when present."
+      },
+      "risk": "safe",
+      "presets": [
+        "aggressive"
+      ],
+      "actions": [
+        {
+          "type": "appx",
+          "packageName": "*Disney*"
+        }
+      ]
+    },
+    {
+      "id": "apps.oem-tiktok",
+      "category": "apps",
+      "title": {
+        "es": "TikTok (preinstalado)",
+        "en": "TikTok (preinstalled)"
+      },
+      "description": {
+        "es": "Aplicación promocional que algunos fabricantes preinstalan. Se detecta solo si está presente.",
+        "en": "Promotional app some vendors preinstall. Detected only when present."
+      },
+      "risk": "safe",
+      "presets": [
+        "aggressive"
+      ],
+      "actions": [
+        {
+          "type": "appx",
+          "packageName": "*TikTok*"
+        }
+      ]
+    },
+    {
+      "id": "apps.oem-instagram",
+      "category": "apps",
+      "title": {
+        "es": "Instagram (preinstalado)",
+        "en": "Instagram (preinstalled)"
+      },
+      "description": {
+        "es": "Aplicación promocional que algunos fabricantes preinstalan. Se detecta solo si está presente.",
+        "en": "Promotional app some vendors preinstall. Detected only when present."
+      },
+      "risk": "safe",
+      "presets": [
+        "aggressive"
+      ],
+      "actions": [
+        {
+          "type": "appx",
+          "packageName": "*Instagram*"
+        }
+      ]
+    },
+    {
+      "id": "apps.oem-facebook",
+      "category": "apps",
+      "title": {
+        "es": "Facebook (preinstalado)",
+        "en": "Facebook (preinstalled)"
+      },
+      "description": {
+        "es": "Aplicación promocional que algunos fabricantes preinstalan. Se detecta solo si está presente.",
+        "en": "Promotional app some vendors preinstall. Detected only when present."
+      },
+      "risk": "safe",
+      "presets": [
+        "aggressive"
+      ],
+      "actions": [
+        {
+          "type": "appx",
+          "packageName": "*Facebook*"
+        }
+      ]
+    },
+    {
+      "id": "apps.oem-candycrush",
+      "category": "apps",
+      "title": {
+        "es": "Candy Crush (preinstalado)",
+        "en": "Candy Crush (preinstalled)"
+      },
+      "description": {
+        "es": "Aplicación promocional que algunos fabricantes preinstalan. Se detecta solo si está presente.",
+        "en": "Promotional app some vendors preinstall. Detected only when present."
+      },
+      "risk": "safe",
+      "presets": [
+        "aggressive"
+      ],
+      "actions": [
+        {
+          "type": "appx",
+          "packageName": "*CandyCrush*"
+        }
+      ]
+    },
+    {
+      "id": "apps.oem-amazon",
+      "category": "apps",
+      "title": {
+        "es": "Amazon (Prime, Alexa) (preinstalado)",
+        "en": "Amazon (Prime, Alexa) (preinstalled)"
+      },
+      "description": {
+        "es": "Aplicación promocional que algunos fabricantes preinstalan. Se detecta solo si está presente.",
+        "en": "Promotional app some vendors preinstall. Detected only when present."
+      },
+      "risk": "moderate",
+      "presets": [
+        "aggressive"
+      ],
+      "actions": [
+        {
+          "type": "appx",
+          "packageName": "*Amazon*"
+        }
+      ]
+    },
+    {
+      "id": "apps.oem-netflix",
+      "category": "apps",
+      "title": {
+        "es": "Netflix (preinstalado)",
+        "en": "Netflix (preinstalled)"
+      },
+      "description": {
+        "es": "Aplicación promocional que algunos fabricantes preinstalan. Se detecta solo si está presente.",
+        "en": "Promotional app some vendors preinstall. Detected only when present."
+      },
+      "risk": "safe",
+      "presets": [
+        "aggressive"
+      ],
+      "actions": [
+        {
+          "type": "appx",
+          "packageName": "*Netflix*"
+        }
+      ]
+    },
+    {
+      "id": "telemetry.policy",
+      "category": "telemetry",
+      "title": {
+        "es": "Telemetría mínima (política)",
+        "en": "Minimal telemetry (policy)"
+      },
+      "description": {
+        "es": "Fija AllowTelemetry=0 en la política de recopilación de datos.",
+        "en": "Sets AllowTelemetry=0 in the data collection policy."
+      },
+      "risk": "safe",
+      "presets": [
+        "minimal",
+        "recommended",
+        "aggressive"
+      ],
+      "actions": [
+        {
+          "type": "registry",
+          "hive": "HKLM",
+          "path": "SOFTWARE\\Policies\\Microsoft\\Windows\\DataCollection",
+          "name": "AllowTelemetry",
+          "valueType": "dword",
+          "value": 0
+        }
+      ],
+      "note": {
+        "es": "En Home/Pro Windows lo trata como 1 (Requerido).",
+        "en": "On Home/Pro Windows treats this as 1 (Required)."
+      }
+    },
+    {
+      "id": "telemetry.diagtrack",
+      "category": "telemetry",
+      "title": {
+        "es": "Servicio DiagTrack",
+        "en": "DiagTrack service"
+      },
+      "description": {
+        "es": "Desactiva Experiencias del usuario conectado y telemetría.",
+        "en": "Disables Connected User Experiences and Telemetry."
+      },
+      "risk": "safe",
+      "presets": [
+        "minimal",
+        "recommended",
+        "aggressive"
+      ],
+      "actions": [
+        {
+          "type": "service",
+          "name": "DiagTrack",
+          "startType": "Disabled"
+        }
+      ]
+    },
+    {
+      "id": "telemetry.dmwappush",
+      "category": "telemetry",
+      "title": {
+        "es": "Servicio dmwappushservice",
+        "en": "dmwappushservice"
+      },
+      "description": {
+        "es": "Desactiva el enrutamiento de mensajes push de WAP.",
+        "en": "Disables WAP push message routing."
+      },
+      "risk": "safe",
+      "presets": [
+        "minimal",
+        "recommended",
+        "aggressive"
+      ],
+      "actions": [
+        {
+          "type": "service",
+          "name": "dmwappushservice",
+          "startType": "Disabled"
+        }
+      ]
+    },
+    {
+      "id": "telemetry.feedback",
+      "category": "telemetry",
+      "title": {
+        "es": "Frecuencia de comentarios",
+        "en": "Feedback frequency"
+      },
+      "description": {
+        "es": "Evita que Windows pida opiniones.",
+        "en": "Stops Windows from asking for feedback."
+      },
+      "risk": "safe",
+      "presets": [
+        "minimal",
+        "recommended",
+        "aggressive"
+      ],
+      "actions": [
+        {
+          "type": "registry",
+          "hive": "HKCU",
+          "path": "Software\\Microsoft\\Siuf\\Rules",
+          "name": "NumberOfSIUFInPeriod",
+          "valueType": "dword",
+          "value": 0
+        }
+      ]
+    },
+    {
+      "id": "telemetry.wer",
+      "category": "telemetry",
+      "title": {
+        "es": "Informe de errores de Windows",
+        "en": "Windows Error Reporting"
+      },
+      "description": {
+        "es": "Desactiva el servicio WerSvc.",
+        "en": "Disables the WerSvc service."
+      },
+      "risk": "moderate",
+      "presets": [
+        "recommended",
+        "aggressive"
+      ],
+      "actions": [
+        {
+          "type": "service",
+          "name": "WerSvc",
+          "startType": "Disabled"
+        }
+      ],
+      "note": {
+        "es": "Se pierden informes de fallos útiles para diagnosticar.",
+        "en": "You lose crash reports useful for diagnosis."
+      }
+    },
+    {
+      "id": "tasks.ceip-consolidator",
+      "category": "scheduledTasks",
+      "title": {
+        "es": "CEIP Consolidator",
+        "en": "CEIP Consolidator"
+      },
+      "description": {
+        "es": "Tarea del programa de mejora de la experiencia del cliente.",
+        "en": "Customer Experience Improvement Program task."
+      },
+      "risk": "safe",
+      "presets": [
+        "minimal",
+        "recommended",
+        "aggressive"
+      ],
+      "actions": [
+        {
+          "type": "scheduledTask",
+          "path": "\\Microsoft\\Windows\\Customer Experience Improvement Program\\Consolidator"
+        }
+      ]
+    },
+    {
+      "id": "tasks.ceip-usb",
+      "category": "scheduledTasks",
+      "title": {
+        "es": "CEIP UsbCeip",
+        "en": "CEIP UsbCeip"
+      },
+      "description": {
+        "es": "Envía estadísticas de uso de USB.",
+        "en": "Sends USB usage statistics."
+      },
+      "risk": "safe",
+      "presets": [
+        "minimal",
+        "recommended",
+        "aggressive"
+      ],
+      "actions": [
+        {
+          "type": "scheduledTask",
+          "path": "\\Microsoft\\Windows\\Customer Experience Improvement Program\\UsbCeip"
+        }
+      ]
+    },
+    {
+      "id": "tasks.appraiser",
+      "category": "scheduledTasks",
+      "title": {
+        "es": "Application Experience Appraiser",
+        "en": "Application Experience Appraiser"
+      },
+      "description": {
+        "es": "Recopila datos de compatibilidad de aplicaciones.",
+        "en": "Collects application compatibility data."
+      },
+      "risk": "moderate",
+      "presets": [
+        "recommended",
+        "aggressive"
+      ],
+      "actions": [
+        {
+          "type": "scheduledTask",
+          "path": "\\Microsoft\\Windows\\Application Experience\\Microsoft Compatibility Appraiser Exp"
+        }
+      ]
+    },
+    {
+      "id": "tasks.marebackup",
+      "category": "scheduledTasks",
+      "title": {
+        "es": "MareBackup",
+        "en": "MareBackup"
+      },
+      "description": {
+        "es": "Copia de datos de compatibilidad de aplicaciones.",
+        "en": "Application compatibility data backup."
+      },
+      "risk": "moderate",
+      "presets": [
+        "recommended",
+        "aggressive"
+      ],
+      "actions": [
+        {
+          "type": "scheduledTask",
+          "path": "\\Microsoft\\Windows\\Application Experience\\MareBackup"
+        }
+      ]
+    },
+    {
+      "id": "tasks.pcapatch",
+      "category": "scheduledTasks",
+      "title": {
+        "es": "PcaPatchDbTask",
+        "en": "PcaPatchDbTask"
+      },
+      "description": {
+        "es": "Actualiza la base de datos del Asistente de compatibilidad de programas.",
+        "en": "Updates the Program Compatibility Assistant database."
+      },
+      "risk": "moderate",
+      "presets": [
+        "recommended",
+        "aggressive"
+      ],
+      "actions": [
+        {
+          "type": "scheduledTask",
+          "path": "\\Microsoft\\Windows\\Application Experience\\PcaPatchDbTask"
+        }
+      ]
+    },
+    {
+      "id": "ads.advertising-id",
+      "category": "ads",
+      "title": {
+        "es": "ID de publicidad",
+        "en": "Advertising ID"
+      },
+      "description": {
+        "es": "Desactiva el identificador de publicidad por usuario.",
+        "en": "Turns off the per-user advertising identifier."
+      },
+      "risk": "safe",
+      "presets": [
+        "minimal",
+        "recommended",
+        "aggressive"
+      ],
+      "actions": [
+        {
+          "type": "registry",
+          "hive": "HKCU",
+          "path": "Software\\Microsoft\\Windows\\CurrentVersion\\AdvertisingInfo",
+          "name": "Enabled",
+          "valueType": "dword",
+          "value": 0
+        }
+      ]
+    },
+    {
+      "id": "ads.tailored",
+      "category": "ads",
+      "title": {
+        "es": "Experiencias personalizadas",
+        "en": "Tailored experiences"
+      },
+      "description": {
+        "es": "No usa datos de diagnóstico para sugerencias personalizadas.",
+        "en": "Do not use diagnostic data for tailored suggestions."
+      },
+      "risk": "safe",
+      "presets": [
+        "minimal",
+        "recommended",
+        "aggressive"
+      ],
+      "actions": [
+        {
+          "type": "registry",
+          "hive": "HKCU",
+          "path": "Software\\Microsoft\\Windows\\CurrentVersion\\Privacy",
+          "name": "TailoredExperiencesWithDiagnosticDataEnabled",
+          "valueType": "dword",
+          "value": 0
+        }
+      ]
+    },
+    {
+      "id": "ads.content-delivery",
+      "category": "ads",
+      "title": {
+        "es": "Sugerencias y apps promocionadas",
+        "en": "Suggestions and promoted apps"
+      },
+      "description": {
+        "es": "Desactiva instalaciones silenciosas, sugerencias en Configuración y consejos de la pantalla de bloqueo.",
+        "en": "Turns off silent installs, Settings suggestions and lock screen tips."
+      },
+      "risk": "safe",
+      "presets": [
+        "minimal",
+        "recommended",
+        "aggressive"
+      ],
+      "actions": [
+        {
+          "type": "registry",
+          "hive": "HKCU",
+          "path": "Software\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager",
+          "name": "SilentInstalledAppsEnabled",
+          "valueType": "dword",
+          "value": 0
+        },
+        {
+          "type": "registry",
+          "hive": "HKCU",
+          "path": "Software\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager",
+          "name": "SubscribedContent-338388Enabled",
+          "valueType": "dword",
+          "value": 0
+        },
+        {
+          "type": "registry",
+          "hive": "HKCU",
+          "path": "Software\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager",
+          "name": "SubscribedContent-338389Enabled",
+          "valueType": "dword",
+          "value": 0
+        },
+        {
+          "type": "registry",
+          "hive": "HKCU",
+          "path": "Software\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager",
+          "name": "SubscribedContent-353694Enabled",
+          "valueType": "dword",
+          "value": 0
+        },
+        {
+          "type": "registry",
+          "hive": "HKCU",
+          "path": "Software\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager",
+          "name": "SubscribedContent-353696Enabled",
+          "valueType": "dword",
+          "value": 0
+        },
+        {
+          "type": "registry",
+          "hive": "HKCU",
+          "path": "Software\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager",
+          "name": "SystemPaneSuggestionsEnabled",
+          "valueType": "dword",
+          "value": 0
+        },
+        {
+          "type": "registry",
+          "hive": "HKCU",
+          "path": "Software\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager",
+          "name": "RotatingLockScreenOverlayEnabled",
+          "valueType": "dword",
+          "value": 0
+        },
+        {
+          "type": "registry",
+          "hive": "HKCU",
+          "path": "Software\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager",
+          "name": "SoftLandingEnabled",
+          "valueType": "dword",
+          "value": 0
+        }
+      ]
+    },
+    {
+      "id": "ads.start-recommendations",
+      "category": "ads",
+      "title": {
+        "es": "Recomendaciones en Inicio",
+        "en": "Start recommendations"
+      },
+      "description": {
+        "es": "Oculta las sugerencias del menú Inicio (Iris).",
+        "en": "Hides Start menu recommendations (Iris)."
+      },
+      "risk": "safe",
+      "presets": [
+        "minimal",
+        "recommended",
+        "aggressive"
+      ],
+      "actions": [
+        {
+          "type": "registry",
+          "hive": "HKCU",
+          "path": "Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced",
+          "name": "Start_IrisRecommendations",
+          "valueType": "dword",
+          "value": 0
+        }
+      ]
+    },
+    {
+      "id": "privacy.bing-search",
+      "category": "privacy",
+      "title": {
+        "es": "Bing en la búsqueda de Inicio",
+        "en": "Bing in Start search"
+      },
+      "description": {
+        "es": "Quita resultados web de la búsqueda del menú Inicio.",
+        "en": "Removes web results from Start search."
+      },
+      "risk": "safe",
+      "presets": [
+        "minimal",
+        "recommended",
+        "aggressive"
+      ],
+      "actions": [
+        {
+          "type": "registry",
+          "hive": "HKCU",
+          "path": "Software\\Policies\\Microsoft\\Windows\\Explorer",
+          "name": "DisableSearchBoxSuggestions",
+          "valueType": "dword",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "id": "privacy.activity-history",
+      "category": "privacy",
+      "title": {
+        "es": "Historial de actividades",
+        "en": "Activity history"
+      },
+      "description": {
+        "es": "Impide guardar y subir el historial de actividades.",
+        "en": "Stops activity history from being stored and uploaded."
+      },
+      "risk": "safe",
+      "presets": [
+        "recommended",
+        "aggressive"
+      ],
+      "actions": [
+        {
+          "type": "registry",
+          "hive": "HKLM",
+          "path": "SOFTWARE\\Policies\\Microsoft\\Windows\\System",
+          "name": "PublishUserActivities",
+          "valueType": "dword",
+          "value": 0
+        },
+        {
+          "type": "registry",
+          "hive": "HKLM",
+          "path": "SOFTWARE\\Policies\\Microsoft\\Windows\\System",
+          "name": "UploadUserActivities",
+          "valueType": "dword",
+          "value": 0
+        }
+      ]
+    },
+    {
+      "id": "privacy.location",
+      "category": "privacy",
+      "title": {
+        "es": "Servicios de ubicación",
+        "en": "Location services"
+      },
+      "description": {
+        "es": "Deniega la ubicación a nivel de sistema.",
+        "en": "Denies location access system-wide."
+      },
+      "risk": "advanced",
+      "presets": [
+        "aggressive"
+      ],
+      "actions": [
+        {
+          "type": "registry",
+          "hive": "HKLM",
+          "path": "SOFTWARE\\Policies\\Microsoft\\Windows\\LocationAndSensors",
+          "name": "DisableLocation",
+          "valueType": "dword",
+          "value": 1
+        }
+      ],
+      "note": {
+        "es": "Rompe mapas, el tiempo y Encontrar mi dispositivo.",
+        "en": "Breaks maps, weather and Find my device."
+      }
+    },
+    {
+      "id": "ai.copilot-policy",
+      "category": "ai",
+      "title": {
+        "es": "Desactivar Copilot",
+        "en": "Turn off Copilot"
+      },
+      "description": {
+        "es": "Aplica la directiva TurnOffWindowsCopilot.",
+        "en": "Applies the TurnOffWindowsCopilot policy."
+      },
+      "risk": "safe",
+      "presets": [
+        "minimal",
+        "recommended",
+        "aggressive"
+      ],
+      "actions": [
+        {
+          "type": "registry",
+          "hive": "HKCU",
+          "path": "Software\\Policies\\Microsoft\\Windows\\WindowsCopilot",
+          "name": "TurnOffWindowsCopilot",
+          "valueType": "dword",
+          "value": 1
+        },
+        {
+          "type": "registry",
+          "hive": "HKLM",
+          "path": "SOFTWARE\\Policies\\Microsoft\\Windows\\WindowsCopilot",
+          "name": "TurnOffWindowsCopilot",
+          "valueType": "dword",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "id": "ai.recall",
+      "category": "ai",
+      "title": {
+        "es": "Desactivar Recall",
+        "en": "Turn off Recall"
+      },
+      "description": {
+        "es": "Desactiva el análisis de datos de IA (Recall).",
+        "en": "Disables AI data analysis (Recall)."
+      },
+      "risk": "safe",
+      "presets": [
+        "minimal",
+        "recommended",
+        "aggressive"
+      ],
+      "actions": [
+        {
+          "type": "registry",
+          "hive": "HKLM",
+          "path": "SOFTWARE\\Policies\\Microsoft\\Windows\\WindowsAI",
+          "name": "DisableAIDataAnalysis",
+          "valueType": "dword",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "id": "ai.copilot-button",
+      "category": "ai",
+      "title": {
+        "es": "Ocultar botón de Copilot",
+        "en": "Hide Copilot button"
+      },
+      "description": {
+        "es": "Quita el botón de Copilot de la barra de tareas.",
+        "en": "Removes the Copilot button from the taskbar."
+      },
+      "risk": "safe",
+      "presets": [
+        "recommended",
+        "aggressive"
+      ],
+      "actions": [
+        {
+          "type": "registry",
+          "hive": "HKCU",
+          "path": "Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced",
+          "name": "ShowCopilotButton",
+          "valueType": "dword",
+          "value": 0
+        }
+      ]
+    },
+    {
+      "id": "services.maps",
+      "category": "services",
+      "title": {
+        "es": "Mapas descargados",
+        "en": "Downloaded maps"
+      },
+      "description": {
+        "es": "Pone el servicio MapsBroker en manual.",
+        "en": "Sets the MapsBroker service to manual."
+      },
+      "risk": "moderate",
+      "presets": [
+        "recommended",
+        "aggressive"
+      ],
+      "actions": [
+        {
+          "type": "service",
+          "name": "MapsBroker",
+          "startType": "Manual"
+        }
+      ]
+    },
+    {
+      "id": "services.retaildemo",
+      "category": "services",
+      "title": {
+        "es": "Modo demostración",
+        "en": "Retail demo"
+      },
+      "description": {
+        "es": "Desactiva el servicio RetailDemo.",
+        "en": "Disables the RetailDemo service."
+      },
+      "risk": "moderate",
+      "presets": [
+        "recommended",
+        "aggressive"
+      ],
+      "actions": [
+        {
+          "type": "service",
+          "name": "RetailDemo",
+          "startType": "Disabled"
+        }
+      ]
+    },
+    {
+      "id": "services.xbox",
+      "category": "services",
+      "title": {
+        "es": "Servicios de Xbox",
+        "en": "Xbox services"
+      },
+      "description": {
+        "es": "Pone los servicios Xbox en manual (úsalo si quitas Xbox).",
+        "en": "Sets Xbox services to manual (use it if you remove Xbox)."
+      },
+      "risk": "moderate",
+      "presets": [
+        "aggressive"
+      ],
+      "actions": [
+        {
+          "type": "service",
+          "name": "XblAuthManager",
+          "startType": "Manual"
+        },
+        {
+          "type": "service",
+          "name": "XblGameSave",
+          "startType": "Manual"
+        },
+        {
+          "type": "service",
+          "name": "XboxGipSvc",
+          "startType": "Manual"
+        },
+        {
+          "type": "service",
+          "name": "XboxNetApiSvc",
+          "startType": "Manual"
+        }
+      ],
+      "note": {
+        "es": "Déjalo si juegas en PC.",
+        "en": "Keep it if you play games on PC."
+      }
+    }
+  ]
+}

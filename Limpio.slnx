@@ -1,0 +1,9 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Limpio.Core/Limpio.Core.csproj" />
+    <Project Path="src/Limpio/Limpio.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Limpio.Core.Tests/Limpio.Core.Tests.csproj" />
+  </Folder>
+</Solution>
