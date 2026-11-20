@@ -79,7 +79,7 @@ public partial class RestoreViewModel : ObservableObject
                 .RevertAsync(Selected.File, new Progress<ApplyEvent>(e =>
                     Log.Add($"{e.Target} - {Loc.T("result." + e.Result.ToString().ToLowerInvariant())}"
                             + (e.Result == StepResult.Failed ? ": " + e.Message : "")))));
-            Status = Loc.F("restore.done", report.Applied, report.Failed);
+            Status = Loc.F("restore.done", Loc.P("restore.reverted", report.Applied), Loc.P("restore.failed", report.Failed));
             await _app.ScanAsync(measure: false);
         }
         catch (Exception ex) { Status = ex.Message; }

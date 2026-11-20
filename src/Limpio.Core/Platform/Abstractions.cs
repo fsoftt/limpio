@@ -53,6 +53,12 @@ public interface IRestorePointService
 {
     /// <summary>Creates a restore point. Returns null on success or a warning message.</summary>
     Task<string?> CreateAsync(string description);
+
+    /// <summary>True/false when System Protection is on/off for the system drive; null when unknown.</summary>
+    Task<bool?> IsProtectionEnabledAsync() => Task.FromResult<bool?>(null);
+
+    /// <summary>Turns System Protection on for the system drive. Returns null on success or a reason.</summary>
+    Task<string?> EnableProtectionAsync() => Task.FromResult<string?>(null);
 }
 
 public interface IStartupAccess

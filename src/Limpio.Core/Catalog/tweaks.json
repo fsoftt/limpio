@@ -1505,6 +1505,14 @@
           "name": "DisableAIDataAnalysis",
           "valueType": "dword",
           "value": 1
+        },
+        {
+          "type": "registry",
+          "hive": "HKCU",
+          "path": "Software\\Policies\\Microsoft\\Windows\\WindowsAI",
+          "name": "DisableAIDataAnalysis",
+          "valueType": "dword",
+          "value": 1
         }
       ]
     },

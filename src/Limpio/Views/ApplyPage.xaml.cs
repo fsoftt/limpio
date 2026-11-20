@@ -5,14 +5,19 @@ namespace Limpio.Views;
 
 public partial class ApplyPage : Page
 {
+    private void OnCopyLine(object sender, System.Windows.RoutedEventArgs e)
+    {
+        if (sender is MenuItem { DataContext: Limpio.ViewModels.LogLine line }) App.Apply.CopyLineCommand.Execute(line.Text);
+    }
+
     public ApplyPage()
     {
         DataContext = App.Apply;
         InitializeComponent();
-        Loaded += (_, _) => App.Apply.Refresh();
+        Loaded += async (_, _) => { App.Apply.Refresh(); await App.Apply.ProbeProtectionAsync(); };
         ((INotifyCollectionChanged)App.Apply.Log).CollectionChanged += (_, _) =>
         {
-            if (LogList.Items.Count > 0) LogList.ScrollIntoView(LogList.Items[^1]);
+            LogScroll.ScrollToEnd();
         };
     }
 }

@@ -5,6 +5,7 @@ using System.Security.Principal;
 using System.Text;
 using System.Text.Json;
 using System.Text.RegularExpressions;
+using Limpio.Core.Engine;
 using Microsoft.Win32;
 
 namespace Limpio.Core.Platform;
@@ -227,22 +228,95 @@ public sealed partial class WindowsAppxAccess : IAppxAccess
 
 public sealed class WindowsRestorePointService : IRestorePointService
 {
-    public Task<string?> CreateAsync(string description) => Task.Run<string?>(() =>
+    private const string SrKey = @"SOFTWARE\Microsoft\Windows NT\CurrentVersion\SystemRestore";
+    private const string FreqName = "SystemRestorePointCreationFrequency";
+    private readonly string _lang;
+
+    public WindowsRestorePointService(string language = "en") => _lang = language;
+
+    public static string SystemDrive => Path.GetPathRoot(Environment.SystemDirectory) ?? @"C:\";
+
+    [DllImport("kernel32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
+    [return: MarshalAs(UnmanagedType.Bool)]
+    private static extern bool GetVolumeNameForVolumeMountPoint(string mountPoint, StringBuilder volumeName, uint len);
+
+    public Task<bool?> IsProtectionEnabledAsync() => Task.Run<bool?>(() =>
     {
         try
         {
-            using var cls = new ManagementClass(@"\\.\root\default:SystemRestore");
-            var args = cls.GetMethodParameters("CreateRestorePoint");
-            args["Description"] = description;
-            args["RestorePointType"] = 12; // MODIFY_SETTINGS
-            args["EventType"] = 100;       // BEGIN_SYSTEM_CHANGE
-            var res = cls.InvokeMethod("CreateRestorePoint", args, null);
-            var code = Convert.ToUInt32(res?["ReturnValue"] ?? 0u);
-            return code == 0 ? null : $"System Restore returned code {code} (it may be disabled).";
+            using var b = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64);
+            using (var pol = b.OpenSubKey(@"SOFTWARE\Policies\Microsoft\Windows NT\SystemRestore"))
+                if (pol?.GetValue("DisableSR") is int d && d == 1) return false;
+            using var clients = b.OpenSubKey(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion\SPP\Clients");
+            if (clients?.GetValue("{09F7EDC5-294E-4180-AF6A-FB0E6A0E9513}") is not string[] entries) return null;
+            var sb = new StringBuilder(64);
+            if (!GetVolumeNameForVolumeMountPoint(SystemDrive, sb, (uint)sb.Capacity)) return null;
+            var vol = sb.ToString().TrimEnd('\\');
+            // Each entry holds a volume path such as 1:\\?\Volume{guid}\ (1 = protection on for that volume).
+            return entries.Any(e => e.StartsWith("1:", StringComparison.Ordinal)
+                                    && e.Contains(vol, StringComparison.OrdinalIgnoreCase));
+        }
+        catch { return null; }
+    });
+
+    public async Task<string?> EnableProtectionAsync()
+    {
+        var drive = SystemDrive;
+        var (code, o, e) = await ProcRunner.PowerShellAsync($"Enable-ComputerRestore -Drive '{drive}' -ErrorAction Stop");
+        if (code == 0) return null;
+        var msg = (e + o).Trim();
+        var text = RestorePointReasons.Disabled(drive.TrimEnd('\\')).Get(_lang);
+        return string.IsNullOrEmpty(msg) ? text : text + " " + msg;
+    }
+
+    public Task<string?> CreateAsync(string description) => Task.Run<string?>(() =>
+    {
+        var drive = SystemDrive.TrimEnd('\\');
+        try
+        {
+            using var b = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64);
+            if (IsProtectionEnabledAsync().GetAwaiter().GetResult() == false)
+                return RestorePointReasons.Disabled(drive).Get(_lang);
+
+            // Windows skips the restore point silently when one was made in the last 24 hours.
+            // Lift that limit for this call and put the original value back afterwards.
+            using var key = b.CreateSubKey(SrKey, writable: true);
+            var original = key.GetValue(FreqName);
+            var originalKind = original is null ? RegistryValueKind.DWord : key.GetValueKind(FreqName);
+            string? result;
+            try
+            {
+                key.SetValue(FreqName, 0, RegistryValueKind.DWord);
+                using var cls = new ManagementClass(@"\\.\root\default:SystemRestore");
+                var args = cls.GetMethodParameters("CreateRestorePoint");
+                args["Description"] = description;
+                args["RestorePointType"] = 12; // MODIFY_SETTINGS
+                args["EventType"] = 100;       // BEGIN_SYSTEM_CHANGE
+                var res = cls.InvokeMethod("CreateRestorePoint", args, null);
+                var code = Convert.ToUInt32(res?["ReturnValue"] ?? 0u);
+                result = code == 0 ? null : RestorePointReasons.FromReturnCode(code).Get(_lang);
+            }
+            catch (Exception ex)
+            {
+                result = RestorePointReasons.FromException(ex).Get(_lang);
+            }
+            try
+            {
+                if (original is null) key.DeleteValue(FreqName, throwOnMissingValue: false);
+                else key.SetValue(FreqName, original, originalKind);
+            }
+            catch (Exception ex)
+            {
+                var warn = _lang.StartsWith("es", StringComparison.OrdinalIgnoreCase)
+                    ? $"No se pudo restaurar el valor original de {FreqName}: {ex.Message}"
+                    : $"Could not restore the original {FreqName} value: {ex.Message}";
+                result = string.IsNullOrEmpty(result) ? warn : result + " " + warn;
+            }
+            return result;
         }
         catch (Exception ex)
         {
-            return "Could not create a restore point: " + ex.Message;
+            return RestorePointReasons.FromException(ex).Get(_lang);
         }
     });
 }
