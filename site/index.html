@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Limpio: limpia el bloatware y la telemetría de Windows 11</title>
+<meta name="description" content="Limpio es una app gratuita y de código abierto que quita el bloatware y la telemetría de Windows 11 y mide la mejora antes y después.">
+<meta name="theme-color" content="#0067c0">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="canonical" href="https://fsoftt.github.io/limpio/">
+<link rel="alternate" hreflang="es" href="https://fsoftt.github.io/limpio/?lang=es">
+<link rel="alternate" hreflang="en" href="https://fsoftt.github.io/limpio/?lang=en">
+<link rel="alternate" hreflang="pt-BR" href="https://fsoftt.github.io/limpio/?lang=pt">
+<link rel="alternate" hreflang="x-default" href="https://fsoftt.github.io/limpio/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Limpio">
+<meta property="og:title" content="Limpio: limpia el bloatware y la telemetría de Windows 11">
+<meta property="og:description" content="Limpio es una app gratuita y de código abierto que quita el bloatware y la telemetría de Windows 11 y mide la mejora antes y después.">
+<meta property="og:url" content="https://fsoftt.github.io/limpio/">
+<meta property="og:image" content="https://fsoftt.github.io/limpio/assets/home.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Limpio: limpia el bloatware y la telemetría de Windows 11">
+<meta name="twitter:description" content="Limpio es una app gratuita y de código abierto que quita el bloatware y la telemetría de Windows 11 y mide la mejora antes y después.">
+<meta name="twitter:image" content="https://fsoftt.github.io/limpio/assets/home.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#main" data-i18n="skip">Saltar al contenido</a>
+<header class="top">
+  <div class="wrap bar">
+    <a class="brand" href="#top" aria-label="Limpio"><img src="favicon.svg" alt="" width="28" height="28"><span>Limpio</span></a>
+    <nav class="nav" aria-label="Principal" data-i18n-aria="nav_label">
+      <a href="#showcase" data-i18n="nav_gain">Resultados</a>
+      <a href="#features" data-i18n="nav_features">Funciones</a>
+      <a href="#safety" data-i18n="nav_safety">Seguridad</a>
+      <a href="#faq" data-i18n="nav_faq">FAQ</a>
+    </nav>
+    <div class="tools">
+      <label class="sr" for="lang" data-i18n="lang_label">Idioma</label>
+      <select id="lang" class="sel">
+        <option value="es">Español</option>
+        <option value="en">English</option>
+        <option value="pt">Português</option>
+      </select>
+      <button id="theme" class="icon-btn" type="button" data-i18n-aria="theme_label" aria-label="Cambiar tema">
+        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M12 3a9 9 0 1 0 9 9c0-.5 0-1-.1-1.4A5.5 5.5 0 0 1 13.4 3.1C13 3 12.5 3 12 3z"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+<section class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div class="hero-text">
+      <p class="eyebrow" data-i18n="hero_eyebrow">Gratis · Código abierto · MIT</p>
+      <h1 data-i18n="hero_title">Un Windows 11 más limpio, y con números que lo demuestran</h1>
+      <p class="lead" data-i18n="hero_lead">Quita bloatware y telemetría, y mide qué has ganado: RAM, procesos, servicios y una puntuación de privacidad, antes y después.</p>
+      <div class="cta">
+        <a class="btn primary" href="https://github.com/fsoftt/limpio/releases/latest" data-i18n="cta_download">Descargar para Windows 11</a>
+        <a class="btn" href="https://github.com/fsoftt/limpio" data-i18n="cta_github">Ver en GitHub</a>
+      </div>
+      <p class="note"><span class="pill" data-i18n="soon_pill">Próximamente</span> <span data-i18n="soon_note">Aún no hay una versión publicada. Mira la página de Releases o compila desde el código fuente.</span> <a href="https://github.com/fsoftt/limpio#readme" data-i18n="soon_build">Compilar desde el código</a></p>
+    </div>
+    <figure class="window">
+      <div class="win-bar" aria-hidden="true"><i></i><i></i><i></i><span>Limpio</span></div>
+      <img src="assets/home.png" width="1475" height="1000" alt="Pantalla de inicio de Limpio" data-i18n-alt="alt_home" fetchpriority="high">
+    </figure>
+  </div>
+</section>
+
+<section class="sec alt" id="showcase" aria-labelledby="h-show">
+  <div class="wrap">
+    <h2 id="h-show" data-i18n="show_title">Mide la diferencia</h2>
+    <p class="sub" data-i18n="show_sub">Limpio toma una medición antes de aplicar y otra después. Cambia entre las dos vistas.</p>
+    <div class="seg" role="group" data-i18n-aria="show_toggle_label" aria-label="Vista">
+      <button type="button" id="seg-before" aria-pressed="false" data-i18n="show_before">Antes</button>
+      <button type="button" id="seg-after" aria-pressed="true" data-i18n="show_after">Después</button>
+    </div>
+    <div class="metrics" id="metrics">
+      <article class="card metric ring" data-before="31" data-after="96" data-max="100" data-good="up">
+        <svg viewBox="0 0 120 120" class="gauge" aria-hidden="true"><circle cx="60" cy="60" r="52" class="trk"/><circle cx="60" cy="60" r="52" class="val" pathLength="100"/></svg>
+        <div class="num"><b class="v">96</b><small>/100</small></div>
+        <h3 data-i18n="m_privacy">Puntuación de privacidad</h3>
+        <p class="delta"></p>
+      </article>
+      <article class="card metric" data-before="6120" data-after="5240" data-max="6120">
+        <div class="num"><b class="v">5240</b><small>MB</small></div>
+        <h3 data-i18n="m_ram">RAM en uso</h3>
+        <div class="bar-g" aria-hidden="true"><i></i></div>
+        <p class="delta"></p>
+      </article>
+      <article class="card metric" data-before="214" data-after="187" data-max="214">
+        <div class="num"><b class="v">187</b></div>
+        <h3 data-i18n="m_proc">Procesos</h3>
+        <div class="bar-g" aria-hidden="true"><i></i></div>
+        <p class="delta"></p>
+      </article>
+      <article class="card metric" data-before="142" data-after="131" data-max="142">
+        <div class="num"><b class="v">131</b></div>
+        <h3 data-i18n="m_serv">Servicios</h3>
+        <div class="bar-g" aria-hidden="true"><i></i></div>
+        <p class="delta"></p>
+      </article>
+    </div>
+    <p class="fine" data-i18n="show_disclaimer">Valores de ejemplo. Tus resultados dependerán de tu equipo y de los ajustes que apliques.</p>
+  </div>
+</section>
+
+<section class="sec" id="features" aria-labelledby="h-feat">
+  <div class="wrap">
+    <h2 id="h-feat" data-i18n="feat_title">Todo lo que necesitas, sin ruido</h2>
+    <div class="grid">
+      <article class="card"><span class="ico" aria-hidden="true">60</span><h3 data-i18n="f1_t">60 ajustes en 7 categorías</h3><p data-i18n="f1_d">Apps, telemetría, privacidad, IA (Copilot y Recall), publicidad, servicios y tareas programadas.</p></article>
+      <article class="card"><span class="ico" aria-hidden="true">⇄</span><h3 data-i18n="f2_t">Antes y después</h3><p data-i18n="f2_d">RAM, procesos, servicios, apps, tareas, programas de inicio y privacidad de 0 a 100.</p></article>
+      <article class="card"><span class="ico" aria-hidden="true">◐</span><h3 data-i18n="f3_t">Etiquetas de riesgo</h3><p data-i18n="f3_d">Cada ajuste indica si es seguro, moderado o avanzado, para que decidas con información.</p></article>
+      <article class="card"><span class="ico" aria-hidden="true">⛨</span><h3 data-i18n="f4_t">Lista protegida</h3><p data-i18n="f4_d">Store, Edge, WebView2, códecs, Windows Update y Defender nunca se tocan.</p></article>
+      <article class="card"><span class="ico" aria-hidden="true">⟲</span><h3 data-i18n="f5_t">Copia y restauración</h3><p data-i18n="f5_d">Punto de restauración, copia en JSON y una página para revertir lo aplicado.</p></article>
+      <article class="card"><span class="ico" aria-hidden="true">◉</span><h3 data-i18n="f6_t">Analiza sin administrador</h3><p data-i18n="f6_d">El análisis no cambia nada. Solo al aplicar, la app se relanza como administrador.</p></article>
+      <article class="card"><span class="ico" aria-hidden="true">≡</span><h3 data-i18n="f7_t">Registro por ejecución</h3><p data-i18n="f7_d">Cada ejecución guarda su propio archivo de registro con lo que se hizo.</p></article>
+      <article class="card"><span class="ico" aria-hidden="true">{ }</span><h3 data-i18n="f8_t">Ampliable por la comunidad</h3><p data-i18n="f8_d">Los ajustes viven en tweaks.json. Cualquiera puede proponer nuevos.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="sec alt" id="how" aria-labelledby="h-how">
+  <div class="wrap">
+    <h2 id="h-how" data-i18n="how_title">Cómo funciona</h2>
+    <ol class="grid g3 steps">
+      <li class="card"><span class="n">1</span><h3 data-i18n="s1_t">Medir</h3><p data-i18n="s1_d">Limpio analiza tu equipo sin cambiar nada y guarda las cifras de partida.</p></li>
+      <li class="card"><span class="n">2</span><h3 data-i18n="s2_t">Aplicar</h3><p data-i18n="s2_d">Elige un preset o marca ajustes uno a uno. Se crea un punto de restauración y una copia antes de tocar nada.</p></li>
+      <li class="card"><span class="n">3</span><h3 data-i18n="s3_t">Comparar</h3><p data-i18n="s3_d">Vuelve a medir y ve cuánto has ganado, con cada cifra al lado de la anterior.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section class="sec" id="safety" aria-labelledby="h-safe">
+  <div class="wrap">
+    <h2 id="h-safe" data-i18n="safe_title">Diseñado para no romper nada</h2>
+    <div class="grid g2">
+      <article class="card"><h3 data-i18n="sf1_t">Lista protegida</h3><p data-i18n="sf1_d">Una lista fija en el código impide tocar Store, Edge, WebView2, códecs, Windows Update y Defender.</p></article>
+      <article class="card"><h3 data-i18n="sf2_t">Punto de restauración</h3><p data-i18n="sf2_d">Antes de aplicar, Limpio crea un punto de restauración del sistema.</p></article>
+      <article class="card"><h3 data-i18n="sf3_t">Copia y reversión</h3><p data-i18n="sf3_d">Guarda una copia en JSON de los valores originales y la página Restaurar los devuelve a su sitio.</p></article>
+      <article class="card"><h3 data-i18n="sf4_t">Honestidad con UCPD</h3><p data-i18n="sf4_d">Algunos valores los protege Windows (UCPD). Limpio los marca como «Bloqueado por Windows» y nunca intenta saltarse la protección.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="sec alt" id="presets" aria-labelledby="h-pre">
+  <div class="wrap">
+    <h2 id="h-pre" data-i18n="pre_title">Presets para empezar rápido</h2>
+    <div class="grid g3">
+      <article class="card"><span class="badge safe" data-i18n="risk_safe">Seguro</span><h3 data-i18n="p1_t">Mínimo</h3><p data-i18n="p1_d">Solo ajustes seguros: apps basura y publicidad evidente.</p></article>
+      <article class="card pick"><span class="badge mod" data-i18n="risk_mod">Moderado</span><h3 data-i18n="p2_t">Recomendado</h3><p data-i18n="p2_d">El equilibrio ideal: más privacidad y menos telemetría sin sacrificar funciones útiles.</p></article>
+      <article class="card"><span class="badge adv" data-i18n="risk_adv">Avanzado</span><h3 data-i18n="p3_t">Agresivo</h3><p data-i18n="p3_d">Incluye ajustes avanzados. Revisa cada uno antes de aplicar.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="shots" aria-labelledby="h-shots">
+  <div class="wrap">
+    <h2 id="h-shots" data-i18n="shots_title">Capturas</h2>
+    <p class="sub" data-i18n="shots_sub">Pulsa una imagen para ampliarla. La de resultados usa datos de ejemplo.</p>
+    <div class="gallery">
+      <button type="button" class="shot" data-src="assets/home.png" data-altkey="alt_home"><img src="assets/home.png" width="1475" height="1000" loading="lazy" alt="Pantalla de inicio de Limpio" data-i18n-alt="alt_home"><span data-i18n="cap_home">Inicio</span></button>
+      <button type="button" class="shot" data-src="assets/tweaks.png" data-altkey="alt_tweaks"><img src="assets/tweaks.png" width="1475" height="1000" loading="lazy" alt="Lista de ajustes de Limpio" data-i18n-alt="alt_tweaks"><span data-i18n="cap_tweaks">Ajustes</span></button>
+      <button type="button" class="shot" data-src="assets/results.png" data-altkey="alt_results"><img src="assets/results.png" width="1475" height="1000" loading="lazy" alt="Resultados antes y después en Limpio" data-i18n-alt="alt_results"><span data-i18n="cap_results">Resultados (datos de ejemplo)</span></button>
+    </div>
+  </div>
+</section>
+
+<section class="sec alt" id="faq" aria-labelledby="h-faq">
+  <div class="wrap narrow">
+    <h2 id="h-faq" data-i18n="faq_title">Preguntas frecuentes</h2>
+    <details><summary data-i18n="q1">¿Es seguro?</summary><p data-i18n="a1">Está pensado para serlo: lista protegida fija, punto de restauración, copia en JSON y etiquetas de riesgo. Empieza con el preset Recomendado y revisa lo que se va a cambiar.</p></details>
+    <details><summary data-i18n="q2">¿Funciona en Windows Home?</summary><p data-i18n="a2">Sí, con una salvedad: en Home y Pro Windows trata AllowTelemetry=0 como 1, así que la telemetría no puede bajar del nivel mínimo. Limpio lo tiene en cuenta.</p></details>
+    <details><summary data-i18n="q3">¿Puedo deshacerlo?</summary><p data-i18n="a3">Sí. Usa la página Restaurar con la copia en JSON, o el punto de restauración del sistema creado antes de aplicar.</p></details>
+    <details><summary data-i18n="q4">¿Por qué Windows bloquea algunos valores?</summary><p data-i18n="a4">Windows protege ciertos valores (por ejemplo, con UCPD) para que ningún programa los cambie. Limpio los muestra como «Bloqueado por Windows» y no intenta eludirlos.</p></details>
+    <details><summary data-i18n="q5">¿Necesita permisos de administrador?</summary><p data-i18n="a5">Analizar no. Aplicar sí: la app se relanza como administrador solo en ese momento.</p></details>
+    <details><summary data-i18n="q6">¿Es de código abierto?</summary><p data-i18n="a6">Sí, bajo licencia MIT. Puedes leer el código, compilarlo tú mismo y proponer cambios en GitHub.</p></details>
+  </div>
+</section>
+
+<section class="sec cta-sec" id="contribute" aria-labelledby="h-con">
+  <div class="wrap narrow center">
+    <h2 id="h-con" data-i18n="con_title">Ayuda a que Limpio mejore</h2>
+    <p class="sub" data-i18n="con_sub">¿Conoces un ajuste útil? Añádelo en tweaks.json y abre un pull request. La guía está en CONTRIBUTING.md.</p>
+    <div class="cta center">
+      <a class="btn primary" href="https://github.com/fsoftt/limpio/blob/main/CONTRIBUTING.md" data-i18n="con_btn">Cómo contribuir</a>
+      <a class="btn" href="https://github.com/fsoftt/limpio/issues" data-i18n="con_issues">Reportar un problema</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <p><a href="https://github.com/fsoftt/limpio/blob/main/LICENSE" data-i18n="foot_license">Licencia MIT</a> · <a href="https://github.com/fsoftt/limpio">GitHub</a></p>
+    <p class="fine" data-i18n="foot_disc">Limpio es un proyecto independiente y no está afiliado a Microsoft. Windows es una marca de Microsoft. Úsalo bajo tu responsabilidad; se ofrece sin garantía. Este sitio no usa cookies ni analítica.</p>
+  </div>
+</footer>
+
+<dialog id="lb" aria-label="Captura" data-i18n-aria="lb_label">
+  <button type="button" id="lb-close" class="icon-btn" data-i18n-aria="lb_close" aria-label="Cerrar">✕</button>
+  <img id="lb-img" alt="">
+</dialog>
+<script src="i18n.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
