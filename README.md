@@ -23,7 +23,7 @@ Sitio web / Website: <https://fsoftt.github.io/limpio/>
 
 ### Descarga
 
-Descarga `Limpio.exe` desde la página de [Releases](https://github.com/fsoftt/limpio/releases). Es un ejecutable único para Windows 11 x64 y no necesita instalar .NET.
+Descarga [`Limpio.exe`](https://github.com/fsoftt/limpio/releases/latest/download/Limpio.exe) (v0.1.0) o consulta todas las [versiones](https://github.com/fsoftt/limpio/releases). Windows SmartScreen puede avisar porque el ejecutable aún no está firmado: pulsa «Más información» y «Ejecutar de todas formas». Es un ejecutable único para Windows 11 x64 y no necesita instalar .NET.
 
 ### Presets
 
@@ -94,7 +94,7 @@ Limpio cambia ajustes del sistema. Úsalo bajo tu responsabilidad y revisa cada 
 
 ### Download
 
-Get `Limpio.exe` from [Releases](https://github.com/fsoftt/limpio/releases). It is a single self-contained Windows 11 x64 executable; no .NET install needed.
+Get [`Limpio.exe`](https://github.com/fsoftt/limpio/releases/latest/download/Limpio.exe) (v0.1.0) or see all [releases](https://github.com/fsoftt/limpio/releases). Windows SmartScreen may warn because the executable is not code-signed yet: click "More info" then "Run anyway". It is a single self-contained Windows 11 x64 executable; no .NET install needed.
 
 ### Presets
 
